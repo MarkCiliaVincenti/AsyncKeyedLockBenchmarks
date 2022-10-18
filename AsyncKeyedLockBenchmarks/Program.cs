@@ -1,4 +1,5 @@
 ﻿using AsyncKeyedLock;
+using AsyncUtilities;
 using KeyedSemaphores;
 using ListShuffle;
 using System.Diagnostics;
@@ -65,4 +66,32 @@ var asyncKeyedLocker = new AsyncKeyedLocker();
     });
     stopwatch.Stop();
     Console.WriteLine($"KeyedSemaphores took {stopwatch.ElapsedMilliseconds}ms");
+}
+
+StripedAsyncLock<string> _lock = new StripedAsyncLock<string>(stripes: 500);
+
+{
+    // Discard these results
+    var result = Parallel.For(0, 10, async (i, state) =>
+    {
+        using (await _lock.LockAsync(myList[i]))
+        {
+            await Task.Delay(1);
+        }
+    });
+    Console.WriteLine($"Initialised StripedAsyncLock. Starting benchmark...");
+}
+
+{
+    var stopwatch = new Stopwatch();
+    stopwatch.Start();
+    var result = Parallel.For(0, myList.Count, async (i, state) =>
+    {
+        using (await _lock.LockAsync(myList[i]))
+        {
+            await Task.Delay(1);
+        }
+    });
+    stopwatch.Stop();
+    Console.WriteLine($"StripedAsyncLock took {stopwatch.ElapsedMilliseconds}ms");
 }
