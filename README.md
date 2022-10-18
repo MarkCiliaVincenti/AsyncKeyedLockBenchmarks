@@ -14,3 +14,5 @@ AsyncKeyedLock took 15355ms
 Initialised KeyedSemaphores. Starting benchmark...
 KeyedSemaphores took 40444ms
 ````
+
+The ideal way to get AsyncKeyedLock is from [NuGet](https://www.nuget.org/packages/AsyncKeyedLock) but the source code is available on [GitHub](https://github.com/MarkCiliaVincenti/AsyncKeyedLock).
