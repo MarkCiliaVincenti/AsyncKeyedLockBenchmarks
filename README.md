@@ -9,12 +9,12 @@ The results consistently show [AsyncKeyedLock](https://github.com/MarkCiliaVince
 Typical results:
 
 ````
-Initialised AsyncKeyedLock. Starting benchmark...
-AsyncKeyedLock took 16542ms
-Initialised KeyedSemaphores. Starting benchmark...
-KeyedSemaphores took 41035ms
 Initialised StripedAsyncLock. Starting benchmark...
-StripedAsyncLock took 31310ms
+StripedAsyncLock took 14583ms
+Initialised AsyncKeyedLock. Starting benchmark...
+AsyncKeyedLock took 12076ms
+Initialised KeyedSemaphores. Starting benchmark...
+KeyedSemaphores took 15673ms
 ````
 
 The ideal way to get AsyncKeyedLock is from [NuGet](https://www.nuget.org/packages/AsyncKeyedLock) but the source code is available on [GitHub](https://github.com/MarkCiliaVincenti/AsyncKeyedLock).

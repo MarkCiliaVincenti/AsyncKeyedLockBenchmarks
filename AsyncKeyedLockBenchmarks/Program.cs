@@ -16,31 +16,61 @@ for (int i = 1; i <= count; i++)
 
 myList.Shuffle();
 
+#region StripedAsyncLock from AsyncUtilities
+StripedAsyncLock<string> _lock = new(stripes: myList.Count);
+
+{
+    // Discard these results
+    await Task.WhenAll(Enumerable.Range(0, 10).Select(async i =>
+    {
+        using (await _lock.LockAsync(myList[i]))
+        {
+            await Task.Delay(1);
+        }
+    }));
+    Console.WriteLine($"Initialised StripedAsyncLock. Starting benchmark...");
+}
+
+{
+    var stopwatch = new Stopwatch();
+    stopwatch.Start();
+    await Task.WhenAll(Enumerable.Range(0, myList.Count).Select(async i =>
+    {
+        using (await _lock.LockAsync(myList[i]))
+        {
+            await Task.Delay(1);
+        }
+    }));
+    stopwatch.Stop();
+    Console.WriteLine($"StripedAsyncLock took {stopwatch.ElapsedMilliseconds}ms");
+}
+#endregion
+
 #region AsyncKeyedLock
 var asyncKeyedLocker = new AsyncKeyedLocker();
 
 {
     // Discard these results
-    var result = Parallel.For(0, 10, async (i, state) =>
+    await Task.WhenAll(Enumerable.Range(0, 10).Select(async i =>
     {
         using (await asyncKeyedLocker.LockAsync(myList[i]))
         {
             await Task.Delay(1);
         }
-    });
+    }));
     Console.WriteLine($"Initialised AsyncKeyedLock. Starting benchmark...");
 }
 
 {
     var stopwatch = new Stopwatch();
     stopwatch.Start();
-    var result = Parallel.For(0, myList.Count, async (i, state) =>
+    await Task.WhenAll(Enumerable.Range(0, myList.Count).Select(async i =>
     {
         using (await asyncKeyedLocker.LockAsync(myList[i]))
         {
             await Task.Delay(1);
         }
-    });
+    }));
     stopwatch.Stop();
     Console.WriteLine($"AsyncKeyedLock took {stopwatch.ElapsedMilliseconds}ms");
 }
@@ -49,57 +79,27 @@ var asyncKeyedLocker = new AsyncKeyedLocker();
 #region KeyedSemaphores
 {
     // Discard these results
-    var result = Parallel.For(0, 10, async (i, state) =>
+    await Task.WhenAll(Enumerable.Range(0, 10).Select(async i =>
     {
         using (await KeyedSemaphore.LockAsync(myList[i]))
         {
             await Task.Delay(1);
         }
-    });
+    }));
     Console.WriteLine($"Initialised KeyedSemaphores. Starting benchmark...");
 }
 
 {
     var stopwatch = new Stopwatch();
     stopwatch.Start();
-    var result = Parallel.For(0, myList.Count, async (i, state) =>
+    await Task.WhenAll(Enumerable.Range(0, myList.Count).Select(async i =>
     {
         using (await KeyedSemaphore.LockAsync(myList[i]))
         {
             await Task.Delay(1);
         }
-    });
+    }));
     stopwatch.Stop();
     Console.WriteLine($"KeyedSemaphores took {stopwatch.ElapsedMilliseconds}ms");
-}
-#endregion
-
-#region StripedAsyncLock from AsyncUtilities
-StripedAsyncLock<string> _lock = new(stripes: count);
-
-{
-    // Discard these results
-    var result = Parallel.For(0, 10, async (i, state) =>
-    {
-        using (await _lock.LockAsync(myList[i]))
-        {
-            await Task.Delay(1);
-        }
-    });
-    Console.WriteLine($"Initialised StripedAsyncLock. Starting benchmark...");
-}
-
-{
-    var stopwatch = new Stopwatch();
-    stopwatch.Start();
-    var result = Parallel.For(0, myList.Count, async (i, state) =>
-    {
-        using (await _lock.LockAsync(myList[i]))
-        {
-            await Task.Delay(1);
-        }
-    });
-    stopwatch.Stop();
-    Console.WriteLine($"StripedAsyncLock took {stopwatch.ElapsedMilliseconds}ms");
 }
 #endregion
