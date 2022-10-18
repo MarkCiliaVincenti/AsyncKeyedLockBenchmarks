@@ -4,8 +4,9 @@ using KeyedSemaphores;
 using ListShuffle;
 using System.Diagnostics;
 
+int count = 500;
 List<string> myList = new();
-for (int i = 1; i <= 500; i++)
+for (int i = 1; i <= count; i++)
 {
     for (int j = 1; j <= i; j++)
     {
@@ -14,6 +15,8 @@ for (int i = 1; i <= 500; i++)
 }
 
 myList.Shuffle();
+
+#region AsyncKeyedLock
 var asyncKeyedLocker = new AsyncKeyedLocker();
 
 {
@@ -41,7 +44,9 @@ var asyncKeyedLocker = new AsyncKeyedLocker();
     stopwatch.Stop();
     Console.WriteLine($"AsyncKeyedLock took {stopwatch.ElapsedMilliseconds}ms");
 }
+#endregion
 
+#region KeyedSemaphores
 {
     // Discard these results
     var result = Parallel.For(0, 10, async (i, state) =>
@@ -67,8 +72,10 @@ var asyncKeyedLocker = new AsyncKeyedLocker();
     stopwatch.Stop();
     Console.WriteLine($"KeyedSemaphores took {stopwatch.ElapsedMilliseconds}ms");
 }
+#endregion
 
-StripedAsyncLock<string> _lock = new StripedAsyncLock<string>(stripes: 500);
+#region StripedAsyncLock from AsyncUtilities
+StripedAsyncLock<string> _lock = new(stripes: count);
 
 {
     // Discard these results
@@ -95,3 +102,4 @@ StripedAsyncLock<string> _lock = new StripedAsyncLock<string>(stripes: 500);
     stopwatch.Stop();
     Console.WriteLine($"StripedAsyncLock took {stopwatch.ElapsedMilliseconds}ms");
 }
+#endregion
