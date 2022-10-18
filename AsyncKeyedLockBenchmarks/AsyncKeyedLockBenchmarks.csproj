@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="3.0.0" />
+		<PackageReference Include="AsyncKeyedLock" Version="3.0.1" />
 		<PackageReference Include="KeyedSemaphores" Version="2.2.1" />
 		<PackageReference Include="ListShuffle" Version="1.1.0" />
 	</ItemGroup>
