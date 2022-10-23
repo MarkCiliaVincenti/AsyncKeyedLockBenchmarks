@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
@@ -8,10 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="3.0.1" />
+		<PackageReference Include="AsyncKeyedLock" Version="3.2.0" />
 		<PackageReference Include="AsyncUtilities" Version="1.1.1" />
-		<PackageReference Include="KeyedSemaphores" Version="2.2.1" />
-		<PackageReference Include="ListShuffle" Version="1.1.0" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+		<PackageReference Include="KeyedSemaphores" Version="3.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
