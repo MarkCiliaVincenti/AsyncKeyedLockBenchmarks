@@ -22,7 +22,8 @@ InvocationCount=1  UnrollFactor=1
 |AsyncKeyedLock (non-generics)|100|1|13.99 ms|0.276 ms|0.405 ms|14.13 ms|0.99|0.04|-|-|-|120.13 KB|1.05|
 |AsyncKeyedLock|100|1|14.14 ms|0.263 ms|0.258 ms|14.18 ms|1.00|0.00|-|-|-|114.86 KB|1.00|
 |KeyedSemaphores|100|1|13.86 ms|0.270 ms|0.396 ms|13.90 ms|0.98|0.03|-|-|-|115.03 KB|1.00|
-|**StripedAsyncLock**|100|1|**13.77 ms**|0.271 ms|0.502 ms|13.93 ms|0.97|0.04|-|-|-|84.92 KB|**0.74**|
+|**StripedAsyncLock**
+Low Mem, Fast|100|1|**13.77 ms**|0.271 ms|0.502 ms|13.93 ms|0.97|0.04|-|-|-|84.92 KB|**0.74**|
 |||||||||||||||
 |AsyncKeyedLock (non-generics)|100|10|154.67 ms|0.174 ms|0.163 ms|154.72 ms|1.00|0.00|-|-|-|650.03 KB|1.05|
 |**AsyncKeyedLock**|100|10|**154.63 ms**|0.301 ms|0.267 ms|154.75 ms|1.00|0.00|-|-|-|616.63 KB|**1.00**|
