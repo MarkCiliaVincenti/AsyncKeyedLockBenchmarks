@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="5.1.1" />
+		<PackageReference Include="AsyncKeyedLock" Version="5.1.2" />
 		<PackageReference Include="AsyncKeyedLock.NonBlocking" Version="5.0.4" />
 		<PackageReference Include="AsyncKeyedLock.Temp" Version="5.0.6-rc">
 		  <Aliases></Aliases>
