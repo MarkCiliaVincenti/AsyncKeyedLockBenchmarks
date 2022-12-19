@@ -27,11 +27,17 @@ namespace AsyncKeyedLockBenchmarks
             }
         }
 
+        //[Params(200, 10_000)] public int NumberOfLocks { get; set; }
+
+        //[Params(100, 10_000)] public int Contention { get; set; }
+
+        //[Params(0, 1, 5)] public int GuidReversals { get; set; }
+
         [Params(20, 1000)] public int NumberOfLocks { get; set; }
 
         [Params(10, 1000)] public int Contention { get; set; }
 
-        [Params(0, 1, 5)] public int GuidReversals { get; set; }
+        [Params(0)] public int GuidReversals { get; set; }
 
         private readonly Dictionary<int, List<int>> _shuffledIntegers = new();
 
