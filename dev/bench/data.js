@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1671440975411,
+  "lastUpdate": 1671445490184,
   "repoUrl": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks",
   "entries": {
     "Benchmark.Net Benchmark": [
@@ -216,6 +216,318 @@ window.BENCHMARK_DATA = {
             "value": 869.1808510638298,
             "unit": "ns",
             "range": "± 89.55204683166669"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "237c374e0999cff0a5bfe002762d7ecfec76b270",
+          "message": "Delete AsyncTaskStruct directory",
+          "timestamp": "2022-12-19T10:13:42+01:00",
+          "tree_id": "7751216e95c1c9ce574d77dd3e91d63da2ef361f",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/237c374e0999cff0a5bfe002762d7ecfec76b270"
+        },
+        "date": 1671441268915,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 192428.8,
+            "unit": "ns",
+            "range": "± 5131.0099882966515"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 1026842.16,
+            "unit": "ns",
+            "range": "± 981469.9154862155"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 10688425.755555555,
+            "unit": "ns",
+            "range": "± 2131496.504806926"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 9330431.466666667,
+            "unit": "ns",
+            "range": "± 50738.00250709052"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 7145737.287234043,
+            "unit": "ns",
+            "range": "± 1431809.3381581178"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 8820383.57142857,
+            "unit": "ns",
+            "range": "± 70038.11464697061"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 962.3548387096774,
+            "unit": "ns",
+            "range": "± 90.80589010311698"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 973.4591836734694,
+            "unit": "ns",
+            "range": "± 192.95767221156592"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b5ccafc993af2ab4d01a7cfe4cff0a26f52e5e93",
+          "message": "Delete NewTest directory",
+          "timestamp": "2022-12-19T10:13:53+01:00",
+          "tree_id": "552a1dd07e2ff44f7eab88a83c21a7fde1c425fa",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/b5ccafc993af2ab4d01a7cfe4cff0a26f52e5e93"
+        },
+        "date": 1671441291073,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 228204.5194805195,
+            "unit": "ns",
+            "range": "± 67472.1656721477"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 188024.20430107528,
+            "unit": "ns",
+            "range": "± 18151.42645224572"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 13368648.957894737,
+            "unit": "ns",
+            "range": "± 3275476.814776308"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 11047082.43678161,
+            "unit": "ns",
+            "range": "± 1595696.7066128177"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 7741396.838383839,
+            "unit": "ns",
+            "range": "± 1119297.6096496603"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 7689953.464646464,
+            "unit": "ns",
+            "range": "± 1301433.7358769749"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 1587.7551020408164,
+            "unit": "ns",
+            "range": "± 223.9593603241304"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 1010.8695652173913,
+            "unit": "ns",
+            "range": "± 133.80034473183673"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c2bf15a257fa3bd58047447b9ebcaf6068c55ae1",
+          "message": "Delete Task directory",
+          "timestamp": "2022-12-19T10:14:03+01:00",
+          "tree_id": "dc4e0f662485b1da1b38f19c397fd9019cf6bb73",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/c2bf15a257fa3bd58047447b9ebcaf6068c55ae1"
+        },
+        "date": 1671441302144,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 229023.59375,
+            "unit": "ns",
+            "range": "± 9242.532546011797"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 218446.8947368421,
+            "unit": "ns",
+            "range": "± 7414.915019430565"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 14711482.336842105,
+            "unit": "ns",
+            "range": "± 5063239.544757398"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 14383574.770833334,
+            "unit": "ns",
+            "range": "± 3664806.762877204"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 8715564.875,
+            "unit": "ns",
+            "range": "± 1244094.6059653964"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 8505237.576086957,
+            "unit": "ns",
+            "range": "± 1961284.8757248102"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 1464.7083333333333,
+            "unit": "ns",
+            "range": "± 136.83812308645776"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 1572.2680412371135,
+            "unit": "ns",
+            "range": "± 132.09099731686845"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "distinct": true,
+          "id": "3090a685d44dbaeb90ffb440c11c3843057b2ee1",
+          "message": "Reduce tasks",
+          "timestamp": "2022-12-19T11:20:40+01:00",
+          "tree_id": "8b298117f589d6ae54dbd098255b3e78f467571a",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/3090a685d44dbaeb90ffb440c11c3843057b2ee1"
+        },
+        "date": 1671445284106,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 192688.4090909091,
+            "unit": "ns",
+            "range": "± 4690.5129038161485"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 16238041.357142856,
+            "unit": "ns",
+            "range": "± 124015.80061651395"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 9502736.916666666,
+            "unit": "ns",
+            "range": "± 122451.2584347958"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 1297.9897959183672,
+            "unit": "ns",
+            "range": "± 130.01217190423702"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a91523d7d3c6b446441b3caf02ca2f798270e40e",
+          "message": "Update dotnet.yml",
+          "timestamp": "2022-12-19T11:24:10+01:00",
+          "tree_id": "2ab037beb964e754b929156a15ed5c7b27db1456",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/a91523d7d3c6b446441b3caf02ca2f798270e40e"
+        },
+        "date": 1671445489705,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 2126938.5,
+            "unit": "ns",
+            "range": "± 22619.057401387723"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 10183522.215909092,
+            "unit": "ns",
+            "range": "± 1629768.3391436622"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 6872098.425531914,
+            "unit": "ns",
+            "range": "± 1029539.6004237413"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 915.4742268041238,
+            "unit": "ns",
+            "range": "± 69.74463730631697"
           }
         ]
       }
