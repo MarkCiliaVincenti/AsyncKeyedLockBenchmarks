@@ -12,6 +12,8 @@ namespace AsyncKeyedLockBenchmarks
 {
     [Config(typeof(Config))]
     [MemoryDiagnoser]
+    [JsonExporterAttribute.Full]
+    [JsonExporterAttribute.FullCompressed]
     public class Benchmarks
     {
         private class Config : ManualConfig
