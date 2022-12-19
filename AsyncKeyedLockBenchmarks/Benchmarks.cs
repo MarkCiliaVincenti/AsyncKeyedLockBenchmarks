@@ -7,22 +7,22 @@ using ListShuffle;
 
 namespace AsyncKeyedLockBenchmarks
 {
-    [Config(typeof(Config))]
+    //[Config(typeof(Config))]
     [MemoryDiagnoser]
     [JsonExporterAttribute.Full]
     [JsonExporterAttribute.FullCompressed]
     public class Benchmarks
     {
-        private class Config : ManualConfig
-        {
-            public Config()
-            {
-                var baseJob = Job.Default;
+        //private class Config : ManualConfig
+        //{
+        //    public Config()
+        //    {
+        //        var baseJob = Job.Default;
 
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "5.1.2").WithBaseline(true));
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.0.2"));
-            }
-        }
+        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "5.1.2").WithBaseline(true));
+        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.0.2"));
+        //    }
+        //}
 
         //[Params(200, 10_000)] public int NumberOfLocks { get; set; }
 
@@ -109,8 +109,8 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark(Baseline = true)]
-        [Benchmark]
+        [Benchmark(Baseline = true)]
+        //[Benchmark]
         public async Task AsyncKeyedLock()
         {
             await RunTests(AsyncKeyedLockerTasks).ConfigureAwait(false);
