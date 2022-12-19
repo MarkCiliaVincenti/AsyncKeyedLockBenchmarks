@@ -20,18 +20,18 @@ namespace AsyncKeyedLockBenchmarks
             {
                 var baseJob = Job.Default;
 
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "5.1.1").WithBaseline(true));
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "5.1.2"));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "5.1.2").WithBaseline(true));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.0.2"));
             }
         }
 
-        [Params(200, 10_000)] public int NumberOfLocks { get; set; }
+        [Params(20, 1000)] public int NumberOfLocks { get; set; }
 
-        [Params(100, 10_000)] public int Contention { get; set; }
+        [Params(10, 1000)] public int Contention { get; set; }
 
         [Params(0, 1, 5)] public int GuidReversals { get; set; }
 
-        private Dictionary<int, List<int>> _shuffledIntegers = new();
+        private readonly Dictionary<int, List<int>> _shuffledIntegers = new();
 
         public List<int> ShuffledIntegers
         {

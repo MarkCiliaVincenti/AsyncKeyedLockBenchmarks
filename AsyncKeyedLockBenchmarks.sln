@@ -5,12 +5,6 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncKeyedLockBenchmarks", "AsyncKeyedLockBenchmarks\AsyncKeyedLockBenchmarks.csproj", "{03D51934-91EA-47E3-A106-DB8B1647BABE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncKeyedLock", "..\AsyncKeyedLock\AsyncKeyedLock\AsyncKeyedLock.csproj", "{6078134E-BF60-44A2-9575-C18912CBB09B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncTask", "Task\AsyncTask.csproj", "{3AB6550E-E4EB-4988-8330-25FA9B000552}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncTaskStruct", "AsyncTaskStruct\AsyncTaskStruct.csproj", "{9B295B81-C9F6-4865-914E-EC39C8B2331B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,18 +15,6 @@ Global
 		{03D51934-91EA-47E3-A106-DB8B1647BABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03D51934-91EA-47E3-A106-DB8B1647BABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03D51934-91EA-47E3-A106-DB8B1647BABE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6078134E-BF60-44A2-9575-C18912CBB09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6078134E-BF60-44A2-9575-C18912CBB09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6078134E-BF60-44A2-9575-C18912CBB09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6078134E-BF60-44A2-9575-C18912CBB09B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3AB6550E-E4EB-4988-8330-25FA9B000552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3AB6550E-E4EB-4988-8330-25FA9B000552}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3AB6550E-E4EB-4988-8330-25FA9B000552}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3AB6550E-E4EB-4988-8330-25FA9B000552}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B295B81-C9F6-4865-914E-EC39C8B2331B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B295B81-C9F6-4865-914E-EC39C8B2331B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B295B81-C9F6-4865-914E-EC39C8B2331B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B295B81-C9F6-4865-914E-EC39C8B2331B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
