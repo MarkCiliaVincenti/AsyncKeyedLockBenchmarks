@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1671445284865,
+  "lastUpdate": 1671445490184,
   "repoUrl": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks",
   "entries": {
     "Benchmark.Net Benchmark": [
@@ -480,6 +480,54 @@ window.BENCHMARK_DATA = {
             "value": 1297.9897959183672,
             "unit": "ns",
             "range": "± 130.01217190423702"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a91523d7d3c6b446441b3caf02ca2f798270e40e",
+          "message": "Update dotnet.yml",
+          "timestamp": "2022-12-19T11:24:10+01:00",
+          "tree_id": "2ab037beb964e754b929156a15ed5c7b27db1456",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/a91523d7d3c6b446441b3caf02ca2f798270e40e"
+        },
+        "date": 1671445489705,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 10, GuidReversals: 0)",
+            "value": 2126938.5,
+            "unit": "ns",
+            "range": "± 22619.057401387723"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 20, Contention: 1000, GuidReversals: 0)",
+            "value": 10183522.215909092,
+            "unit": "ns",
+            "range": "± 1629768.3391436622"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 10, GuidReversals: 0)",
+            "value": 6872098.425531914,
+            "unit": "ns",
+            "range": "± 1029539.6004237413"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(NumberOfLocks: 1000, Contention: 1000, GuidReversals: 0)",
+            "value": 915.4742268041238,
+            "unit": "ns",
+            "range": "± 69.74463730631697"
           }
         ]
       }
