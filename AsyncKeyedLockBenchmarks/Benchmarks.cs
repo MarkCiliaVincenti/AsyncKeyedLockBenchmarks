@@ -1,5 +1,6 @@
 ﻿using AsyncKeyedLock;
 using BenchmarkDotNet.Attributes;
+using Firebend.AutoCrud.Core.Threading;
 using ListShuffle;
 using SixLabors.ImageSharp.Web.Synchronization;
 
@@ -75,7 +76,7 @@ namespace AsyncKeyedLockBenchmarks
         }
 
         #region AsyncKeyedLock
-        public AsyncKeyedLocker<string>? AsyncKeyedLocker { get; set; }
+        public AsyncKeyedLocker<int>? AsyncKeyedLocker { get; set; }
         public ParallelQuery<Task>? AsyncKeyedLockerTasks { get; set; }
 
         [IterationSetup(Target = nameof(AsyncKeyedLock))]
@@ -83,13 +84,13 @@ namespace AsyncKeyedLockBenchmarks
         {
             if (NumberOfLocks != Contention)
             {
-                AsyncKeyedLocker = new AsyncKeyedLocker<string>(o => o.PoolSize = NumberOfLocks, Environment.ProcessorCount, NumberOfLocks);
+                AsyncKeyedLocker = new AsyncKeyedLocker<int>(o => o.PoolSize = NumberOfLocks, Environment.ProcessorCount, NumberOfLocks);
                 AsyncKeyedLockerTasks = ShuffledIntegers
                     .Select(async i =>
                     {
                         var key = i % NumberOfLocks;
 
-                        using (var myLock = await AsyncKeyedLocker.LockAsync(key.ToString()).ConfigureAwait(false))
+                        using (var myLock = await AsyncKeyedLocker.LockAsync(key).ConfigureAwait(false))
                         {
                             Operation();
                         }
@@ -116,7 +117,7 @@ namespace AsyncKeyedLockBenchmarks
         #endregion AsyncKeyedLock
 
         #region AsyncKeyLock
-        public AsyncKeyLock<string>? AsyncKeyLocker { get; set; }
+        public AsyncKeyLock<int>? AsyncKeyLocker { get; set; }
         public ParallelQuery<Task>? AsyncKeyLockerTasks { get; set; }
 
         [IterationSetup(Target = nameof(AsyncKeyLockFromImageSharpWeb))]
@@ -124,13 +125,13 @@ namespace AsyncKeyedLockBenchmarks
         {
             if (NumberOfLocks != Contention)
             {
-                AsyncKeyLocker = new AsyncKeyLock<string>(NumberOfLocks);
+                AsyncKeyLocker = new AsyncKeyLock<int>(NumberOfLocks);
                 AsyncKeyLockerTasks = ShuffledIntegers
                     .Select(async i =>
                     {
                         var key = i % NumberOfLocks;
 
-                        using (var myLock = await AsyncKeyLocker.LockAsync(key.ToString()).ConfigureAwait(false))
+                        using (var myLock = await AsyncKeyLocker.LockAsync(key).ConfigureAwait(false))
                         {
                             Operation();
                         }
@@ -152,6 +153,44 @@ namespace AsyncKeyedLockBenchmarks
         {
 #pragma warning disable CS8604 // Possible null reference argument.
             await RunTests(AsyncKeyLockerTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion AsyncKeyLock
+
+        #region AsyncDuplicateLock
+        public ParallelQuery<Task>? AsyncDuplicateLockTasks { get; set; }
+
+        [IterationSetup(Target = nameof(AsyncDuplicateLockFromAutoCrud))]
+        public void SetupAsyncDuplicateLock()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                AsyncDuplicateLockTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await AsyncDuplicateLock.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(AsyncDuplicateLockFromAutoCrud))]
+        public void CleanupAsyncDuplicateLock()
+        {
+            AsyncDuplicateLockTasks = null;
+        }
+
+        [Benchmark]
+        public async Task AsyncDuplicateLockFromAutoCrud()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(AsyncDuplicateLockTasks).ConfigureAwait(false);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion AsyncKeyLock
