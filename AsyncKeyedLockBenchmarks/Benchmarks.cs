@@ -21,7 +21,7 @@ namespace AsyncKeyedLockBenchmarks
                 var baseJob = Job.Default;
 
                 AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.1.0").WithBaseline(true));
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.1.1-beta"));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.1.1-rc"));
             }
         }
 
@@ -80,7 +80,11 @@ namespace AsyncKeyedLockBenchmarks
         {
             if (NumberOfLocks != Contention)
             {
-                AsyncKeyedLocker = new AsyncKeyedLocker<int>(o => o.PoolSize = NumberOfLocks, Environment.ProcessorCount, NumberOfLocks);
+                AsyncKeyedLocker = new AsyncKeyedLocker<int>(o =>
+                {
+                    o.PoolSize = NumberOfLocks;
+                    o.PoolInitialFill = Environment.ProcessorCount * 4;
+                }, Environment.ProcessorCount, NumberOfLocks);
                 AsyncKeyedLockerTasks = ShuffledIntegers
                     .Select(async i =>
                     {
