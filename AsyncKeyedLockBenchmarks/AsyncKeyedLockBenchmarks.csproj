@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="6.1.0" />
+		<PackageReference Include="AsyncKeyedLock" Version="6.1.1" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.13.4" />
 		<PackageReference Include="Firebend.AutoCrud.Core" Version="6.1.0" />
 		<PackageReference Include="ListShuffle" Version="1.1.3" />
