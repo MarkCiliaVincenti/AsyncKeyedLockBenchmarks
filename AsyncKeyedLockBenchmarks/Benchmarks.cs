@@ -1,33 +1,29 @@
 ﻿using AsyncKeyedLock;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
 using Firebend.AutoCrud.Core.Threading;
 using ListShuffle;
 using SixLabors.ImageSharp.Web.Synchronization;
 
 namespace AsyncKeyedLockBenchmarks
 {
-    //[Config(typeof(Config))]
+    [Config(typeof(Config))]
     [MemoryDiagnoser]
     [JsonExporterAttribute.Full]
     [JsonExporterAttribute.FullCompressed]
     public class Benchmarks
     {
-        //private class Config : ManualConfig
-        //{
-        //    public Config()
-        //    {
-        //        var baseJob = Job.Default;
+        private class Config : ManualConfig
+        {
+            public Config()
+            {
+                var baseJob = Job.Default;
 
-        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "5.1.2").WithBaseline(true));
-        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.0.2"));
-        //    }
-        //}
-
-        //[Params(200, 10_000)] public int NumberOfLocks { get; set; }
-
-        //[Params(100, 10_000)] public int Contention { get; set; }
-
-        //[Params(0, 1, 5)] public int GuidReversals { get; set; }
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.1.0").WithBaseline(true));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.1.1-beta"));
+            }
+        }
 
         [Params(200, 10_000)] public int NumberOfLocks { get; set; }
 
@@ -107,7 +103,8 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark(Baseline = true)]
+        //[Benchmark(Baseline = true)]
+        [Benchmark]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -148,7 +145,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task AsyncKeyLockFromImageSharpWeb()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -186,7 +183,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncDuplicateLockTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task AsyncDuplicateLockFromAutoCrud()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
