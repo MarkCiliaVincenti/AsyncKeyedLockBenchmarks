@@ -10,7 +10,7 @@
 	<ItemGroup>
 		<PackageReference Include="AsyncKeyedLock" Version="6.1.1" />
 		<PackageReference Include="AsyncKeyLock" Version="1.0.3" />
-		<PackageReference Include="BenchmarkDotNet" Version="0.13.4" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
 		<PackageReference Include="Firebend.AutoCrud.Core" Version="6.1.0" />
 		<PackageReference Include="ListShuffle" Version="1.1.4" />
 		<PackageReference Include="SixLabors.ImageSharp.Web" Version="2.0.2" />
