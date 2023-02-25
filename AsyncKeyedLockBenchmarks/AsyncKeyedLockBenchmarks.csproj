@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AsyncKeyedLock" Version="6.2.0-alpha" />
-		<PackageReference Include="AsyncKeyLock" Version="1.0.3" />
+		<PackageReference Include="AsyncKeyLock" Version="1.0.4" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
 		<PackageReference Include="Firebend.AutoCrud.Core" Version="6.1.0" />
 		<PackageReference Include="KeyedSemaphores" Version="4.0.0" />
