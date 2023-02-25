@@ -319,7 +319,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncDuplicateLockTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task AsyncDuplicateLockFromAutoCrud()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -360,7 +360,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncLockTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task StripedAsyncLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
