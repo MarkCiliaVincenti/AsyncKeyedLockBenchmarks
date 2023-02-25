@@ -1,4 +1,5 @@
 ﻿using AsyncKeyedLock;
+using AsyncUtilities;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
@@ -116,8 +117,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark(Baseline = true)]
-        //[Benchmark]
+        [Benchmark(Baseline = true)]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -125,130 +125,6 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion AsyncKeyedLock
-
-        #region AsyncKeyLockFromImageSharpWeb
-        public SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>? AsyncKeyLockerFromImageSharpWeb { get; set; }
-        public ParallelQuery<Task>? AsyncKeyLockerFromImageSharpWebTasks { get; set; }
-
-        [IterationSetup(Target = nameof(AsyncKeyLockFromImageSharpWeb))]
-        public void SetupAsyncKeyLockFromImageSharpWeb()
-        {
-            if (NumberOfLocks != Contention)
-            {
-                AsyncKeyLockerFromImageSharpWeb = new SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>(NumberOfLocks);
-                AsyncKeyLockerFromImageSharpWebTasks = ShuffledIntegers
-                    .Select(async i =>
-                    {
-                        var key = i % NumberOfLocks;
-
-                        using (var myLock = await AsyncKeyLockerFromImageSharpWeb.LockAsync(key).ConfigureAwait(false))
-                        {
-                            Operation();
-                        }
-
-                        await Task.Yield();
-                    }).AsParallel();
-            }
-        }
-
-        [IterationCleanup(Target = nameof(AsyncKeyLockFromImageSharpWeb))]
-        public void CleanupAsyncKeyLockFromImageSharpWeb()
-        {
-            AsyncKeyLockerFromImageSharpWeb = null;
-            AsyncKeyLockerFromImageSharpWebTasks = null;
-        }
-
-        //[Benchmark]
-        public async Task AsyncKeyLockFromImageSharpWeb()
-        {
-#pragma warning disable CS8604 // Possible null reference argument.
-            await RunTests(AsyncKeyLockerFromImageSharpWebTasks).ConfigureAwait(false);
-#pragma warning restore CS8604 // Possible null reference argument.
-        }
-        #endregion AsyncKeyLockFromImageSharpWeb
-
-        #region AsyncKeyLock
-        public AsyncKeyLock.AsyncLock<int>? AsyncKeyLocker { get; set; }
-        public ParallelQuery<Task>? AsyncKeyLockerTasks { get; set; }
-
-        [IterationSetup(Target = nameof(AsyncKeyLock))]
-        public void SetupAsyncKeyLock()
-        {
-            if (NumberOfLocks != Contention)
-            {
-                AsyncKeyLocker = new AsyncKeyLock.AsyncLock<int>(NumberOfLocks);
-                AsyncKeyLockerTasks = ShuffledIntegers
-                    .Select(async i =>
-                    {
-                        var key = i % NumberOfLocks;
-
-                        using (var myLock = await AsyncKeyLocker.WriterLockAsync(key).ConfigureAwait(false))
-                        {
-                            Operation();
-                        }
-
-                        await Task.Yield();
-                    }).AsParallel();
-            }
-        }
-
-        [IterationCleanup(Target = nameof(AsyncKeyLock))]
-        public void CleanupAsyncKeyLock()
-        {
-            AsyncKeyLocker = null;
-            AsyncKeyLockerTasks = null;
-        }
-
-        //[Benchmark]
-        public async Task AsyncKeyLock()
-        {
-#pragma warning disable CS8604 // Possible null reference argument.
-            await RunTests(AsyncKeyLockerTasks).ConfigureAwait(false);
-#pragma warning restore CS8604 // Possible null reference argument.
-        }
-        #endregion AsyncKeyLock
-
-        #region KeyedSemaphores
-        public KeyedSemaphoresCollection<int>? KeyedSemaphoresCollection { get; set; }
-        public ParallelQuery<Task>? KeyedSemaphoresTasks { get; set; }
-
-        [IterationSetup(Target = nameof(KeyedSemaphores))]
-        public void SetupKeyedSemaphores()
-        {
-            if (NumberOfLocks != Contention)
-            {
-                KeyedSemaphoresCollection = new KeyedSemaphoresCollection<int>(NumberOfLocks);
-                KeyedSemaphoresTasks = ShuffledIntegers
-                    .Select(async i =>
-                    {
-                        var key = i % NumberOfLocks;
-
-                        using (var myLock = await KeyedSemaphoresCollection.LockAsync(key).ConfigureAwait(false))
-                        {
-                            Operation();
-                        }
-
-                        await Task.Yield();
-                    }).AsParallel();
-            }
-        }
-
-        [IterationCleanup(Target = nameof(KeyedSemaphores))]
-        public void CleanupKeyedSemaphores()
-        {
-            KeyedSemaphoresCollection = null;
-            KeyedSemaphoresTasks = null;
-        }
-
-        //[Benchmark]
-        [Benchmark(Baseline = true)]
-        public async Task KeyedSemaphores()
-        {
-#pragma warning disable CS8604 // Possible null reference argument.
-            await RunTests(KeyedSemaphoresTasks).ConfigureAwait(false);
-#pragma warning restore CS8604 // Possible null reference argument.
-        }
-        #endregion KeyedSemaphores
 
         #region StripedAsyncKeyedLocker
         public StripedAsyncKeyedLocker<int>? StripedAsyncKeyedLockerCollection { get; set; }
@@ -291,6 +167,129 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion StripedAsyncKeyedLocker
 
+        #region AsyncKeyLockFromImageSharpWeb
+        public SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>? AsyncKeyLockerFromImageSharpWeb { get; set; }
+        public ParallelQuery<Task>? AsyncKeyLockerFromImageSharpWebTasks { get; set; }
+
+        [IterationSetup(Target = nameof(AsyncKeyLockFromImageSharpWeb))]
+        public void SetupAsyncKeyLockFromImageSharpWeb()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                AsyncKeyLockerFromImageSharpWeb = new SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>(NumberOfLocks);
+                AsyncKeyLockerFromImageSharpWebTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await AsyncKeyLockerFromImageSharpWeb.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(AsyncKeyLockFromImageSharpWeb))]
+        public void CleanupAsyncKeyLockFromImageSharpWeb()
+        {
+            AsyncKeyLockerFromImageSharpWeb = null;
+            AsyncKeyLockerFromImageSharpWebTasks = null;
+        }
+
+        [Benchmark]
+        public async Task AsyncKeyLockFromImageSharpWeb()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(AsyncKeyLockerFromImageSharpWebTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion AsyncKeyLockFromImageSharpWeb
+
+        #region AsyncKeyLock
+        public AsyncKeyLock.AsyncLock<int>? AsyncKeyLocker { get; set; }
+        public ParallelQuery<Task>? AsyncKeyLockerTasks { get; set; }
+
+        [IterationSetup(Target = nameof(AsyncKeyLock))]
+        public void SetupAsyncKeyLock()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                AsyncKeyLocker = new AsyncKeyLock.AsyncLock<int>(NumberOfLocks);
+                AsyncKeyLockerTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await AsyncKeyLocker.WriterLockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(AsyncKeyLock))]
+        public void CleanupAsyncKeyLock()
+        {
+            AsyncKeyLocker = null;
+            AsyncKeyLockerTasks = null;
+        }
+
+        [Benchmark]
+        public async Task AsyncKeyLock()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(AsyncKeyLockerTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion AsyncKeyLock
+
+        #region KeyedSemaphores
+        public KeyedSemaphoresCollection<int>? KeyedSemaphoresCollection { get; set; }
+        public ParallelQuery<Task>? KeyedSemaphoresTasks { get; set; }
+
+        [IterationSetup(Target = nameof(KeyedSemaphores))]
+        public void SetupKeyedSemaphores()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                KeyedSemaphoresCollection = new KeyedSemaphoresCollection<int>(NumberOfLocks);
+                KeyedSemaphoresTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await KeyedSemaphoresCollection.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(KeyedSemaphores))]
+        public void CleanupKeyedSemaphores()
+        {
+            KeyedSemaphoresCollection = null;
+            KeyedSemaphoresTasks = null;
+        }
+
+        [Benchmark]
+        public async Task KeyedSemaphores()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(KeyedSemaphoresTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion KeyedSemaphores
+
         #region AsyncDuplicateLock
         public ParallelQuery<Task>? AsyncDuplicateLockTasks { get; set; }
 
@@ -328,5 +327,47 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion AsyncKeyLock
+
+        #region StripedAsyncLock
+        public StripedAsyncLock<int>? StripedAsyncLocker { get; set; }
+        public ParallelQuery<Task>? StripedAsyncLockTasks { get; set; }
+
+        [IterationSetup(Target = nameof(StripedAsyncLock))]
+        public void SetupStripedAsyncLock()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                StripedAsyncLocker = new StripedAsyncLock<int>(NumberOfLocks);
+                StripedAsyncLockTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await StripedAsyncLocker.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(StripedAsyncLock))]
+        public void CleanupStripedAsyncLock()
+        {
+            StripedAsyncLocker = null;
+            StripedAsyncLockTasks = null;
+        }
+
+        //[Benchmark]
+        public async Task StripedAsyncLock()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(StripedAsyncLockTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion StripedAsyncLock
+
     }
 }
