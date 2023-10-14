@@ -93,7 +93,7 @@ namespace AsyncKeyedLockBenchmarks
                 AsyncKeyedLocker = new AsyncKeyedLocker<int>(o =>
                 {
                     o.PoolSize = NumberOfLocks;
-                    o.PoolInitialFill = Environment.ProcessorCount * 4;
+                    o.PoolInitialFill = Environment.ProcessorCount * 2;
                 }, Environment.ProcessorCount, NumberOfLocks);
                 AsyncKeyedLockerTasks = ShuffledIntegers
                     .Select(async i =>
@@ -125,6 +125,47 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion AsyncKeyedLock
+
+        #region AsyncKeyedLockNoPooling
+        public AsyncKeyedLocker<int>? AsyncKeyedLockerNoPooling { get; set; }
+        public ParallelQuery<Task>? AsyncKeyedLockerNoPoolingTasks { get; set; }
+
+        [IterationSetup(Target = nameof(AsyncKeyedLockNoPooling))]
+        public void SetupAsyncKeyedLockNoPooling()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<int>(o =>
+                { }, Environment.ProcessorCount, NumberOfLocks);
+                AsyncKeyedLockerNoPoolingTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await AsyncKeyedLockerNoPooling.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(AsyncKeyedLockNoPooling))]
+        public void CleanupAsyncKeyedLockNoPooling()
+        {
+            AsyncKeyedLockerNoPooling = null;
+            AsyncKeyedLockerNoPoolingTasks = null;
+        }
+
+        public async Task AsyncKeyedLockNoPooling()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(AsyncKeyedLockerNoPoolingTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion AsyncKeyedLockNoPooling
 
         #region StripedAsyncKeyedLocker
         public StripedAsyncKeyedLocker<int>? StripedAsyncKeyedLockerCollection { get; set; }
@@ -286,6 +327,47 @@ namespace AsyncKeyedLockBenchmarks
         {
 #pragma warning disable CS8604 // Possible null reference argument.
             await RunTests(KeyedSemaphoresTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion KeyedSemaphores
+
+        #region KeyedSemaphoresDictionary
+        public KeyedSemaphoresDictionary<int>? KeyedSemaphoresDictionaryDictionary { get; set; }
+        public ParallelQuery<Task>? KeyedSemaphoresDictionaryTasks { get; set; }
+
+        [IterationSetup(Target = nameof(KeyedSemaphoresDictionary))]
+        public void SetupKeyedSemaphoresDictionary()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                KeyedSemaphoresDictionaryDictionary = new KeyedSemaphoresDictionary<int>(Environment.ProcessorCount, NumberOfLocks, EqualityComparer<int>.Default, TimeSpan.FromMilliseconds(10));
+                KeyedSemaphoresDictionaryTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await KeyedSemaphoresDictionaryDictionary.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(KeyedSemaphoresDictionary))]
+        public void CleanupKeyedSemaphoresDictionary()
+        {
+            KeyedSemaphoresDictionaryDictionary = null;
+            KeyedSemaphoresDictionaryTasks = null;
+        }
+
+        [Benchmark]
+        public async Task KeyedSemaphoresDictionary()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(KeyedSemaphoresDictionaryTasks).ConfigureAwait(false);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion KeyedSemaphores
