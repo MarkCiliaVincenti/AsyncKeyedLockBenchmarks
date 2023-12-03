@@ -8,10 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="6.2.2" />
+		<PackageReference Include="AsyncKeyedLock" Version="6.2.3" />
 		<PackageReference Include="AsyncKeyLock" Version="1.0.4" />
 		<PackageReference Include="AsyncUtilities" Version="1.1.1" />
-		<PackageReference Include="BenchmarkDotNet" Version="0.13.9" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.10" />
 		<PackageReference Include="Firebend.AutoCrud.Core" Version="6.1.0" />
 		<PackageReference Include="KeyedSemaphores" Version="5.0.0" />
 		<PackageReference Include="ListShuffle" Version="1.1.5" />
