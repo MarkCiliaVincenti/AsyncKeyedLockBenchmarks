@@ -3,7 +3,6 @@ using AsyncUtilities;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
-using Firebend.AutoCrud.Core.Threading;
 using KeyedSemaphores;
 using ListShuffle;
 
@@ -209,7 +208,7 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion StripedAsyncKeyedLocker
 
-        #region AsyncKeyedLockTrue
+        /*#region AsyncKeyedLockTrue
         public AsyncKeyedLocker<int>? AsyncKeyedLockerTrue { get; set; }
         public ParallelQuery<Task>? AsyncKeyedLockerTrueTasks { get; set; }
 
@@ -335,10 +334,9 @@ namespace AsyncKeyedLockBenchmarks
             await RunTests(StripedAsyncKeyedLockerTrueTasks).ConfigureAwait(true);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
-        #endregion StripedAsyncKeyedLockerTrue
+        #endregion StripedAsyncKeyedLockerTrue*/
 
 
-        /*
         #region AsyncKeyLockFromImageSharpWeb
         public SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>? AsyncKeyLockerFromImageSharpWeb { get; set; }
         public ParallelQuery<Task>? AsyncKeyLockerFromImageSharpWebTasks { get; set; }
@@ -505,18 +503,20 @@ namespace AsyncKeyedLockBenchmarks
 
         #region AsyncDuplicateLock
         public ParallelQuery<Task>? AsyncDuplicateLockTasks { get; set; }
+        public AsyncDuplicateLock? AsyncDuplicateLockCollection { get; set; }
 
-        [IterationSetup(Target = nameof(AsyncDuplicateLockFromAutoCrud))]
+        [IterationSetup(Target = nameof(AsyncDuplicateLock))]
         public void SetupAsyncDuplicateLock()
         {
             if (NumberOfLocks != Contention)
             {
+                AsyncDuplicateLockCollection = new();
                 AsyncDuplicateLockTasks = ShuffledIntegers
                     .Select(async i =>
                     {
                         var key = i % NumberOfLocks;
 
-                        using (var myLock = await AsyncDuplicateLock.LockAsync(key).ConfigureAwait(false))
+                        using (var myLock = await AsyncDuplicateLockCollection.LockAsync(key).ConfigureAwait(false))
                         {
                             Operation();
                         }
@@ -526,20 +526,21 @@ namespace AsyncKeyedLockBenchmarks
             }
         }
 
-        [IterationCleanup(Target = nameof(AsyncDuplicateLockFromAutoCrud))]
+        [IterationCleanup(Target = nameof(AsyncDuplicateLock))]
         public void CleanupAsyncDuplicateLock()
         {
             AsyncDuplicateLockTasks = null;
+            AsyncDuplicateLockCollection = null;
         }
 
         [Benchmark]
-        public async Task AsyncDuplicateLockFromAutoCrud()
+        public async Task AsyncDuplicateLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
             await RunTests(AsyncDuplicateLockTasks).ConfigureAwait(false);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
-        #endregion AsyncKeyLock
+        #endregion AsyncDuplicateLock
 
         #region StripedAsyncLock
         public StripedAsyncLock<int>? StripedAsyncLocker { get; set; }
@@ -581,7 +582,5 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion StripedAsyncLock
-        */
-
     }
 }
