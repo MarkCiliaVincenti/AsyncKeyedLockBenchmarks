@@ -14,9 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Setup .NET
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.0'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
       - name: Run benchmark
         run: cd AsyncKeyedLockBenchmarks && dotnet run --configuration Release --exporters json --filter '*'
 
