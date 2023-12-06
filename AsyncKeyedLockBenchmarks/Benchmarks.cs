@@ -209,6 +209,136 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion StripedAsyncKeyedLocker
 
+        #region AsyncKeyedLockTrue
+        public AsyncKeyedLocker<int>? AsyncKeyedLockerTrue { get; set; }
+        public ParallelQuery<Task>? AsyncKeyedLockerTrueTasks { get; set; }
+
+        [IterationSetup(Target = nameof(AsyncKeyedLockTrue))]
+        public void SetupAsyncKeyedLockTrue()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                AsyncKeyedLockerTrue = new AsyncKeyedLocker<int>(o =>
+                {
+                    o.PoolSize = NumberOfLocks;
+                    o.PoolInitialFill = Environment.ProcessorCount * 2;
+                }, Environment.ProcessorCount, NumberOfLocks);
+                AsyncKeyedLockerTrueTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await AsyncKeyedLockerTrue.LockAsync(key, true).ConfigureAwait(true))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(AsyncKeyedLockTrue))]
+        public void CleanupAsyncKeyedLockTrue()
+        {
+            AsyncKeyedLockerTrue = null;
+            AsyncKeyedLockerTrueTasks = null;
+        }
+
+        [Benchmark]
+        public async Task AsyncKeyedLockTrue()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(AsyncKeyedLockerTrueTasks).ConfigureAwait(true);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion AsyncKeyedLockTrue
+
+        #region AsyncKeyedLockNoPoolingTrue
+        public AsyncKeyedLocker<int>? AsyncKeyedLockerNoPoolingTrue { get; set; }
+        public ParallelQuery<Task>? AsyncKeyedLockerNoPoolingTrueTasks { get; set; }
+
+        [IterationSetup(Target = nameof(AsyncKeyedLockNoPoolingTrue))]
+        public void SetupAsyncKeyedLockNoPoolingTrue()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                AsyncKeyedLockerNoPoolingTrue = new AsyncKeyedLocker<int>(o =>
+                { }, Environment.ProcessorCount, NumberOfLocks);
+                AsyncKeyedLockerNoPoolingTrueTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await AsyncKeyedLockerNoPoolingTrue.LockAsync(key, true).ConfigureAwait(true))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(AsyncKeyedLockNoPoolingTrue))]
+        public void CleanupAsyncKeyedLockNoPoolingTrue()
+        {
+            AsyncKeyedLockerNoPoolingTrue = null;
+            AsyncKeyedLockerNoPoolingTrueTasks = null;
+        }
+
+        [Benchmark]
+        public async Task AsyncKeyedLockNoPoolingTrue()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(AsyncKeyedLockerNoPoolingTrueTasks).ConfigureAwait(true);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion AsyncKeyedLockNoPoolingTrue
+
+        #region StripedAsyncKeyedLockerTrue
+        public StripedAsyncKeyedLocker<int>? StripedAsyncKeyedLockerTrueCollection { get; set; }
+        public ParallelQuery<Task>? StripedAsyncKeyedLockerTrueTasks { get; set; }
+
+        [IterationSetup(Target = nameof(StripedAsyncKeyedLockTrue))]
+        public void SetupStripedAsyncKeyedLockTrue()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                StripedAsyncKeyedLockerTrueCollection = new StripedAsyncKeyedLocker<int>(NumberOfLocks, 1);
+                StripedAsyncKeyedLockerTrueTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await StripedAsyncKeyedLockerTrueCollection.LockAsync(key, true).ConfigureAwait(true))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(StripedAsyncKeyedLockTrue))]
+        public void CleanupStripedAsyncKeyedTrueLocker()
+        {
+            StripedAsyncKeyedLockerTrueCollection = null;
+            StripedAsyncKeyedLockerTrueTasks = null;
+        }
+
+        [Benchmark]
+        public async Task StripedAsyncKeyedLockTrue()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(StripedAsyncKeyedLockerTrueTasks).ConfigureAwait(true);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion StripedAsyncKeyedLockerTrue
+
+
+        /*
         #region AsyncKeyLockFromImageSharpWeb
         public SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>? AsyncKeyLockerFromImageSharpWeb { get; set; }
         public ParallelQuery<Task>? AsyncKeyLockerFromImageSharpWebTasks { get; set; }
@@ -451,6 +581,7 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion StripedAsyncLock
+        */
 
     }
 }
