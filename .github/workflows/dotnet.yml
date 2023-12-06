@@ -17,7 +17,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 8.0.0
       - name: List SDKs
         run: dotnet --list-sdks
       - name: Restore dependencies
@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Run benchmark
-        run: dotnet run --framework net8.0 --configuration Release --exporters json --filter '*'
+        run: /usr/share/dotnet/sdk/8.0.100/Sdks/Microsoft.NET.Sdk/dotnet run --framework net8.0 --configuration Release --exporters json --filter '*'
         working-directory: AsyncKeyedLockBenchmarks
 
       - name: Store benchmark result
