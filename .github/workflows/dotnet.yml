@@ -23,7 +23,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Run benchmark
-        run: cd AsyncKeyedLockBenchmarks && dotnet run --configuration Release --exporters json --filter '*'
+        run: cd AsyncKeyedLockBenchmarks && dotnet run --f net8.0 --configuration Release --exporters json --filter '*'
 
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
