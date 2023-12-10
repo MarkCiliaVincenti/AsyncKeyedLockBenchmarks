@@ -336,7 +336,7 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion StripedAsyncKeyedLockerTrue*/
 
-
+        /*
         #region AsyncKeyLockFromImageSharpWeb
         public SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>? AsyncKeyLockerFromImageSharpWeb { get; set; }
         public ParallelQuery<Task>? AsyncKeyLockerFromImageSharpWebTasks { get; set; }
@@ -500,6 +500,7 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion KeyedSemaphores
+        */
 
         #region AsyncDuplicateLock
         public ParallelQuery<Task>? AsyncDuplicateLockTasks { get; set; }
@@ -542,6 +543,48 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion AsyncDuplicateLock
 
+        #region TheodorZoulias
+        public ParallelQuery<Task>? TheodorZouliasTasks { get; set; }
+        public TheodorZoulias? TheodorZouliasCollection { get; set; }
+
+        [IterationSetup(Target = nameof(TheodorZoulias))]
+        public void SetupTheodorZoulias()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                TheodorZouliasCollection = new();
+                TheodorZouliasTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await TheodorZouliasCollection.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(TheodorZoulias))]
+        public void CleanupTheodorZoulias()
+        {
+            TheodorZouliasTasks = null;
+            TheodorZouliasCollection = null;
+        }
+
+        [Benchmark]
+        public async Task TheodorZoulias()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(TheodorZouliasTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion TheodorZoulias
+
+        /*
         #region StripedAsyncLock
         public StripedAsyncLock<int>? StripedAsyncLocker { get; set; }
         public ParallelQuery<Task>? StripedAsyncLockTasks { get; set; }
@@ -582,5 +625,6 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion StripedAsyncLock
+        */
     }
 }
