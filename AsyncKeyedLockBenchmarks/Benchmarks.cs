@@ -336,7 +336,6 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion StripedAsyncKeyedLockerTrue*/
 
-        /*
         #region AsyncKeyLockFromImageSharpWeb
         public SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<int>? AsyncKeyLockerFromImageSharpWeb { get; set; }
         public ParallelQuery<Task>? AsyncKeyLockerFromImageSharpWebTasks { get; set; }
@@ -500,7 +499,6 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion KeyedSemaphores
-        */
 
         #region AsyncDuplicateLock
         public ParallelQuery<Task>? AsyncDuplicateLockTasks { get; set; }
@@ -584,7 +582,6 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion TheodorZoulias
 
-        /*
         #region StripedAsyncLock
         public StripedAsyncLock<int>? StripedAsyncLocker { get; set; }
         public ParallelQuery<Task>? StripedAsyncLockTasks { get; set; }
@@ -625,6 +622,5 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion StripedAsyncLock
-        */
     }
 }
