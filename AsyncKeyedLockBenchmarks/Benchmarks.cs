@@ -5,7 +5,6 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using KeyedSemaphores;
 using ListShuffle;
-using System.Collections.Concurrent;
 
 namespace AsyncKeyedLockBenchmarks
 {
@@ -117,7 +116,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark(Baseline = true)]
+        [Benchmark(Baseline = true)]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -127,7 +126,7 @@ namespace AsyncKeyedLockBenchmarks
         #endregion AsyncKeyedLock
 
         #region AsyncKeyedLockNoPooling
-        public AsyncKeyedLocker<string>? AsyncKeyedLockerNoPooling { get; set; }
+        public AsyncKeyedLocker<int>? AsyncKeyedLockerNoPooling { get; set; }
         public ParallelQuery<Task>? AsyncKeyedLockerNoPoolingTasks { get; set; }
 
         [IterationSetup(Target = nameof(AsyncKeyedLockNoPooling))]
@@ -135,13 +134,12 @@ namespace AsyncKeyedLockBenchmarks
         {
             if (NumberOfLocks != Contention)
             {
-                ConcurrentDictionary<int, string> keys = [];
-                AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<string>(o =>
+                AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<int>(o =>
                 { }, Environment.ProcessorCount, NumberOfLocks);
                 AsyncKeyedLockerNoPoolingTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = keys.GetOrAdd(i % NumberOfLocks, (i % NumberOfLocks).ToString());
+                        var key = i % NumberOfLocks;
 
                         using (var myLock = await AsyncKeyedLockerNoPooling.LockAsync(key).ConfigureAwait(false))
                         {
@@ -160,8 +158,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerNoPoolingTasks = null;
         }
 
-        //[Benchmark]
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public async Task AsyncKeyedLockNoPooling()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -202,7 +199,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task StripedAsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -371,7 +368,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerFromImageSharpWebTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task AsyncKeyLockFromImageSharpWeb()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -412,7 +409,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task AsyncKeyLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -453,7 +450,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task KeyedSemaphores()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -494,7 +491,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresDictionaryTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task KeyedSemaphoresDictionary()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -512,12 +509,11 @@ namespace AsyncKeyedLockBenchmarks
         {
             if (NumberOfLocks != Contention)
             {
-                ConcurrentDictionary<int, string> keys = [];
                 AsyncDuplicateLockCollection = new();
                 AsyncDuplicateLockTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = keys.GetOrAdd(i % NumberOfLocks, (i % NumberOfLocks).ToString());
+                        var key = i % NumberOfLocks;
 
                         using (var myLock = await AsyncDuplicateLockCollection.LockAsync(key).ConfigureAwait(false))
                         {
@@ -544,48 +540,6 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion AsyncDuplicateLock
-
-        #region ConditionalWeakTableTest
-        public ParallelQuery<Task>? ConditionalWeakTableTestTasks { get; set; }
-        public ConditionalWeakTableTest<string>? ConditionalWeakTableTestCollection { get; set; }
-
-        [IterationSetup(Target = nameof(ConditionalWeakTableTest))]
-        public void SetupConditionalWeakTableTest()
-        {
-            if (NumberOfLocks != Contention)
-            {
-                ConcurrentDictionary<int, string> keys = [];
-                ConditionalWeakTableTestCollection = new();
-                ConditionalWeakTableTestTasks = ShuffledIntegers
-                    .Select(async i =>
-                    {
-                        var key = keys.GetOrAdd(i % NumberOfLocks, (i % NumberOfLocks).ToString());
-
-                        using (var myLock = await ConditionalWeakTableTestCollection.LockAsync(key).ConfigureAwait(false))
-                        {
-                            Operation();
-                        }
-
-                        await Task.Yield();
-                    }).AsParallel();
-            }
-        }
-
-        [IterationCleanup(Target = nameof(ConditionalWeakTableTest))]
-        public void CleanupConditionalWeakTableTest()
-        {
-            ConditionalWeakTableTestTasks = null;
-            ConditionalWeakTableTestCollection = null;
-        }
-
-        [Benchmark]
-        public async Task ConditionalWeakTableTest()
-        {
-#pragma warning disable CS8604 // Possible null reference argument.
-            await RunTests(ConditionalWeakTableTestTasks).ConfigureAwait(false);
-#pragma warning restore CS8604 // Possible null reference argument.
-        }
-        #endregion ConditionalWeakTableTest
 
         #region TheodorZoulias
         public ParallelQuery<Task>? TheodorZouliasTasks { get; set; }
@@ -619,7 +573,7 @@ namespace AsyncKeyedLockBenchmarks
             TheodorZouliasCollection = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task TheodorZoulias()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -660,7 +614,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncLockTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task StripedAsyncLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
