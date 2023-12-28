@@ -368,7 +368,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerFromImageSharpWebTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task AsyncKeyLockFromImageSharpWeb()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -409,7 +409,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task AsyncKeyLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -450,7 +450,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task KeyedSemaphores()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -491,7 +491,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresDictionaryTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task KeyedSemaphoresDictionary()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -541,6 +541,47 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion AsyncDuplicateLock
 
+        #region ConditionalWeakTableTest
+        public ParallelQuery<Task>? ConditionalWeakTableTestTasks { get; set; }
+        public AsyncDuplicateLock? ConditionalWeakTableTestCollection { get; set; }
+
+        [IterationSetup(Target = nameof(ConditionalWeakTableTest))]
+        public void SetupConditionalWeakTableTest()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                ConditionalWeakTableTestCollection = new();
+                ConditionalWeakTableTestTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = i % NumberOfLocks;
+
+                        using (var myLock = await ConditionalWeakTableTestCollection.LockAsync(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(ConditionalWeakTableTest))]
+        public void CleanupConditionalWeakTableTest()
+        {
+            ConditionalWeakTableTestTasks = null;
+            ConditionalWeakTableTestCollection = null;
+        }
+
+        [Benchmark]
+        public async Task ConditionalWeakTableTest()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(ConditionalWeakTableTestTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion ConditionalWeakTableTest
+
         #region TheodorZoulias
         public ParallelQuery<Task>? TheodorZouliasTasks { get; set; }
         public TheodorZoulias? TheodorZouliasCollection { get; set; }
@@ -573,7 +614,7 @@ namespace AsyncKeyedLockBenchmarks
             TheodorZouliasCollection = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task TheodorZoulias()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -614,7 +655,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncLockTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task StripedAsyncLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
