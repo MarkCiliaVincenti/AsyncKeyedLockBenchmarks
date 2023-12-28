@@ -2,35 +2,23 @@
 
 namespace AsyncKeyedLockBenchmarks;
 
-public sealed class ConditionalWeakTableTest
+public sealed class ConditionalWeakTableTest<TKey> where TKey : class
 {
-    private static readonly ConditionalWeakTable<object, SemaphoreSlim> SemaphoreSlims
-                          = new();
+    private readonly ConditionalWeakTable<TKey, SemaphoreSlim> _semaphores = [];
 
-    private SemaphoreSlim GetOrCreate(object key)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public async ValueTask<IDisposable> LockAsync(TKey key)
     {
-        return SemaphoreSlims.GetValue(key, _ => new SemaphoreSlim(1));
-    }
-
-    public IDisposable Lock(object key)
-    {
-        var semaphoreSlim = GetOrCreate(key);
-        semaphoreSlim.Wait();
-        return new Releaser { SemaphoreSlim = semaphoreSlim };
-    }
-
-    public async Task<IDisposable> LockAsync(object key)
-    {
-        var semaphoreSlim = GetOrCreate(key);
+        var semaphoreSlim = _semaphores.GetValue(key, _ => new SemaphoreSlim(1));
         await semaphoreSlim.WaitAsync().ConfigureAwait(false);
         return new Releaser { SemaphoreSlim = semaphoreSlim };
     }
 
-    private sealed class Releaser : IDisposable
+    private struct Releaser : IDisposable
     {
         public SemaphoreSlim SemaphoreSlim { get; set; }
 
-        public void Dispose()
+        public readonly void Dispose()
         {
             SemaphoreSlim.Release();
         }

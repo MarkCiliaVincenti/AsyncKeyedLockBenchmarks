@@ -5,6 +5,7 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using KeyedSemaphores;
 using ListShuffle;
+using System.Collections.Concurrent;
 
 namespace AsyncKeyedLockBenchmarks
 {
@@ -116,7 +117,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark(Baseline = true)]
+        //[Benchmark(Baseline = true)]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -126,7 +127,7 @@ namespace AsyncKeyedLockBenchmarks
         #endregion AsyncKeyedLock
 
         #region AsyncKeyedLockNoPooling
-        public AsyncKeyedLocker<int>? AsyncKeyedLockerNoPooling { get; set; }
+        public AsyncKeyedLocker<string>? AsyncKeyedLockerNoPooling { get; set; }
         public ParallelQuery<Task>? AsyncKeyedLockerNoPoolingTasks { get; set; }
 
         [IterationSetup(Target = nameof(AsyncKeyedLockNoPooling))]
@@ -134,12 +135,13 @@ namespace AsyncKeyedLockBenchmarks
         {
             if (NumberOfLocks != Contention)
             {
-                AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<int>(o =>
+                ConcurrentDictionary<int, string> keys = [];
+                AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<string>(o =>
                 { }, Environment.ProcessorCount, NumberOfLocks);
                 AsyncKeyedLockerNoPoolingTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = i % NumberOfLocks;
+                        var key = keys.GetOrAdd(i % NumberOfLocks, (i % NumberOfLocks).ToString());
 
                         using (var myLock = await AsyncKeyedLockerNoPooling.LockAsync(key).ConfigureAwait(false))
                         {
@@ -158,7 +160,8 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerNoPoolingTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
+        [Benchmark(Baseline = true)]
         public async Task AsyncKeyedLockNoPooling()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -199,7 +202,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public async Task StripedAsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -509,11 +512,12 @@ namespace AsyncKeyedLockBenchmarks
         {
             if (NumberOfLocks != Contention)
             {
+                ConcurrentDictionary<int, string> keys = [];
                 AsyncDuplicateLockCollection = new();
                 AsyncDuplicateLockTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = i % NumberOfLocks;
+                        var key = keys.GetOrAdd(i % NumberOfLocks, (i % NumberOfLocks).ToString());
 
                         using (var myLock = await AsyncDuplicateLockCollection.LockAsync(key).ConfigureAwait(false))
                         {
@@ -543,18 +547,19 @@ namespace AsyncKeyedLockBenchmarks
 
         #region ConditionalWeakTableTest
         public ParallelQuery<Task>? ConditionalWeakTableTestTasks { get; set; }
-        public AsyncDuplicateLock? ConditionalWeakTableTestCollection { get; set; }
+        public ConditionalWeakTableTest<string>? ConditionalWeakTableTestCollection { get; set; }
 
         [IterationSetup(Target = nameof(ConditionalWeakTableTest))]
         public void SetupConditionalWeakTableTest()
         {
             if (NumberOfLocks != Contention)
             {
+                ConcurrentDictionary<int, string> keys = [];
                 ConditionalWeakTableTestCollection = new();
                 ConditionalWeakTableTestTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = i % NumberOfLocks;
+                        var key = keys.GetOrAdd(i % NumberOfLocks, (i % NumberOfLocks).ToString());
 
                         using (var myLock = await ConditionalWeakTableTestCollection.LockAsync(key).ConfigureAwait(false))
                         {
