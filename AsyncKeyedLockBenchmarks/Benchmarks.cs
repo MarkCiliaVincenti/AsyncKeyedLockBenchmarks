@@ -3,37 +3,36 @@ using AsyncUtilities;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Jobs;
 using KeyedSemaphores;
 using ListShuffle;
 
 namespace AsyncKeyedLockBenchmarks
 {
-    [Config(typeof(Config))]
-    //[Config(typeof(MemoryConfig))]
+    //[Config(typeof(Config))]
+    [Config(typeof(MemoryConfig))]
     [MemoryDiagnoser]
     [JsonExporterAttribute.Full]
     [JsonExporterAttribute.FullCompressed]
     public class Benchmarks
     {
-        //private class MemoryConfig : ManualConfig
-        //{
-        //    public MemoryConfig()
-        //    {
-        //        AddDiagnoser(MemoryDiagnoser.Default);
-        //    }
-        //}
-
-        private class Config : ManualConfig
+        private class MemoryConfig : ManualConfig
         {
-            public Config()
+            public MemoryConfig()
             {
-                var baseJob = Job.Default;
-
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.2.4").WithBaseline(true));
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.2.5-alpha"));
+                AddDiagnoser(MemoryDiagnoser.Default);
             }
         }
+
+        //private class Config : ManualConfig
+        //{
+        //    public Config()
+        //    {
+        //        var baseJob = Job.Default;
+
+        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.1.0").WithBaseline(true));
+        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.1.1-rc"));
+        //    }
+        //}
 
         [Params(200, 10_000)] public int NumberOfLocks { get; set; }
 
@@ -200,7 +199,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task StripedAsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -369,7 +368,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerFromImageSharpWebTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task AsyncKeyLockFromImageSharpWeb()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -410,7 +409,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task AsyncKeyLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -451,7 +450,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task KeyedSemaphores()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -492,7 +491,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresDictionaryTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task KeyedSemaphoresDictionary()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -533,7 +532,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncDuplicateLockCollection = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task AsyncDuplicateLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -574,7 +573,7 @@ namespace AsyncKeyedLockBenchmarks
             TheodorZouliasCollection = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task TheodorZoulias()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -615,7 +614,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncLockTasks = null;
         }
 
-        //[Benchmark]
+        [Benchmark]
         public async Task StripedAsyncLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
