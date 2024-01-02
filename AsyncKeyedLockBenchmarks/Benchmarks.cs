@@ -117,7 +117,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark(Baseline = true)]
+        [Benchmark(Baseline = true, Description = "AsyncKeyedLocker with pooling")]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -159,7 +159,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerNoPoolingTasks = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "AsyncKeyedLocker without pooling")]
         public async Task AsyncKeyedLockNoPooling()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -200,7 +200,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "StripedAsyncKeyedLocker")]
         public async Task StripedAsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -369,7 +369,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerFromImageSharpWebTasks = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "AsyncKeyLock from ImageSharp.Web")]
         public async Task AsyncKeyLockFromImageSharpWeb()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -410,7 +410,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerTasks = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "AsyncKeyLock by usercode")]
         public async Task AsyncKeyLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -451,7 +451,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresTasks = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "KeyedSemaphoresCollection from Keyed Semaphores")]
         public async Task KeyedSemaphores()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -492,7 +492,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresDictionaryTasks = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "KeyedSemaphoresDictionary from Keyed Semaphores")]
         public async Task KeyedSemaphoresDictionary()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -533,7 +533,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncDuplicateLockCollection = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "AsyncDuplicateLock, Stephen Cleary's SO solution")]
         public async Task AsyncDuplicateLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -574,7 +574,7 @@ namespace AsyncKeyedLockBenchmarks
             TheodorZouliasCollection = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "AsyncDuplicateLock, Theodor Zoulias' SO solution")]
         public async Task TheodorZoulias()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -615,7 +615,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncLockTasks = null;
         }
 
-        [Benchmark]
+        [Benchmark(Description = "StripedAsyncLock from AsyncUtilities")]
         public async Task StripedAsyncLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.

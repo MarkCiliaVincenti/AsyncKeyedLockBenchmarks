@@ -13,7 +13,7 @@ Solutions tested:
 2. AsyncKeyedLocker without pooling (from [AsyncKeyedLock](https://github.com/MarkCiliaVincenti/AsyncKeyedLock))
 3. StripedAsyncKeyedLocker (from [AsyncKeyedLock](https://github.com/MarkCiliaVincenti/AsyncKeyedLock))
 4. AsyncKeyLock from [ImageSharp.Web](https://github.com/SixLabors/ImageSharp.Web)
-5. [AsyncKeyLock](https://github.com/usercode/AsyncKeyLock)
+5. [AsyncKeyLock](https://github.com/usercode/AsyncKeyLock) by usercode
 6. KeyedSemaphoresCollection from [Keyed Semaphores](https://github.com/amoerie/keyed-semaphores), similar to AsyncKeyedLocker without pooling
 7. KeyedSemaphoresDictionary from [Keyed Semaphores](https://github.com/amoerie/keyed-semaphores), similar to StripedAsyncKeyedLocker
 8. AsyncDuplicateLock from [Stephen Cleary's StackOverflow solution](https://stackoverflow.com/a/31194647)
