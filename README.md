@@ -7,8 +7,7 @@ This is a project to help benchmark the [AsyncKeyedLock](https://github.com/Mark
 
 When looking at the benchmarks, please ignore all values for 10k locks with 10k contention: they are dummy tests and don't actually run.
 
-Solutions tested:
-
+## Solutions tested
 1. AsyncKeyedLocker with pooling (from [AsyncKeyedLock](https://github.com/MarkCiliaVincenti/AsyncKeyedLock))
 2. AsyncKeyedLocker without pooling (from [AsyncKeyedLock](https://github.com/MarkCiliaVincenti/AsyncKeyedLock))
 3. StripedAsyncKeyedLocker (from [AsyncKeyedLock](https://github.com/MarkCiliaVincenti/AsyncKeyedLock))
@@ -20,4 +19,7 @@ Solutions tested:
 9. AsyncDuplicateLock from [Theodor Zoulias' improvement over #8](https://stackoverflow.com/a/65256155)
 10. StripedAsyncLock from [AsyncUtilities](https://github.com/i3arnon/AsyncUtilities), similar to StripedAsyncKeyedLocker
 
-Some comparisons over time can also be found at https://markciliavincenti.github.io/AsyncKeyedLockBenchmarks/dev/bench/
+## Results
+The [benchmark results](https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/actions/workflows/dotnet.yml) can be found in our actions as they run in Github Actions, in a fully transparent fashion.
+
+There are also some [graphical comparisons over time](https://markciliavincenti.github.io/AsyncKeyedLockBenchmarks/dev/bench/).
