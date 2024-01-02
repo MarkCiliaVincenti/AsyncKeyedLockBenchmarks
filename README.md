@@ -13,11 +13,11 @@ When looking at the benchmarks, please ignore all values for 10k locks with 10k 
 3. StripedAsyncKeyedLocker (from [AsyncKeyedLock](https://github.com/MarkCiliaVincenti/AsyncKeyedLock))
 4. AsyncKeyLock from [ImageSharp.Web](https://github.com/SixLabors/ImageSharp.Web)
 5. [AsyncKeyLock](https://github.com/usercode/AsyncKeyLock) by usercode
-6. KeyedSemaphoresCollection from [Keyed Semaphores](https://github.com/amoerie/keyed-semaphores), similar to AsyncKeyedLocker without pooling
-7. KeyedSemaphoresDictionary from [Keyed Semaphores](https://github.com/amoerie/keyed-semaphores), similar to StripedAsyncKeyedLocker
-8. AsyncDuplicateLock from [Stephen Cleary's StackOverflow solution](https://stackoverflow.com/a/31194647)
-9. AsyncDuplicateLock from [Theodor Zoulias' improvement over #8](https://stackoverflow.com/a/65256155)
-10. StripedAsyncLock from [AsyncUtilities](https://github.com/i3arnon/AsyncUtilities), similar to StripedAsyncKeyedLocker
+6. KeyedSemaphoresCollection from [Keyed Semaphores](https://github.com/amoerie/keyed-semaphores), similar to StripedAsyncKeyedLocker
+8. KeyedSemaphoresDictionary from [Keyed Semaphores](https://github.com/amoerie/keyed-semaphores), similar to AsyncKeyedLocker without pooling
+10. AsyncDuplicateLock from [Stephen Cleary's StackOverflow solution](https://stackoverflow.com/a/31194647)
+11. AsyncDuplicateLock from [Theodor Zoulias' improvement over #8](https://stackoverflow.com/a/65256155)
+12. StripedAsyncLock from [AsyncUtilities](https://github.com/i3arnon/AsyncUtilities), similar to StripedAsyncKeyedLocker
 
 ## Results
 The [benchmark results](https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/actions/workflows/dotnet.yml) can be found in our actions as they run in Github Actions, in a fully transparent fashion.
