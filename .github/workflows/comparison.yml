@@ -1,0 +1,30 @@
+name: AsyncKeyedLockBenchmarks
+on:
+  push:
+    branches:
+      - 6.2.6-to-6.2.7-alpha
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  benchmark:
+    name: Run AsyncKeyedLockBenchmarks benchmark
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: New global.json
+        run: dotnet new globaljson
+        working-directory: AsyncKeyedLockBenchmarks
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Run benchmark
+        run: dotnet run --framework net8.0 --configuration Release --exporters json --filter '*'
+        working-directory: AsyncKeyedLockBenchmarks
