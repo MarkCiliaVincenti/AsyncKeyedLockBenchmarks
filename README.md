@@ -18,6 +18,8 @@ When looking at the benchmarks, please ignore all values for 10k locks with 10k 
 10. AsyncDuplicateLock from [Stephen Cleary's StackOverflow solution](https://stackoverflow.com/a/31194647)
 11. AsyncDuplicateLock from [Theodor Zoulias' improvement over #8](https://stackoverflow.com/a/65256155)
 12. StripedAsyncLock from [AsyncUtilities](https://github.com/i3arnon/AsyncUtilities), similar to StripedAsyncKeyedLocker
+13. [NeoSmart.Synchronization](https://github.com/neosmart/synchronization)
+14. [Dao.IndividualLock](https://github.com/OscarKoo/IndividualLock)
 
 ## Results
 The [benchmark results](https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/actions/workflows/dotnet.yml) can be found in our actions as they run in Github Actions, in a fully transparent fashion.
