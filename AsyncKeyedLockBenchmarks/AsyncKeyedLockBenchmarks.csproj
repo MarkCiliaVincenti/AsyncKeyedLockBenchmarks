@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="6.3.2" />
+		<PackageReference Include="AsyncKeyedLock" Version="6.3.3" />
 		<PackageReference Include="AsyncKeyLock" Version="1.0.4" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
 		<PackageReference Include="Dao.IndividualLock" Version="3.1.1" />
