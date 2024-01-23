@@ -30,8 +30,8 @@ namespace AsyncKeyedLockBenchmarks
             {
                 var baseJob = Job.Default;
 
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.2.6").WithBaseline(true));
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.2.7-alpha"));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.3.3").WithBaseline(true));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.3.4-beta"));
             }
         }
 
@@ -160,7 +160,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerNoPoolingTasks = null;
         }
 
-        [Benchmark(Description = "AsyncKeyedLocker without pooling")]
+        //[Benchmark(Description = "AsyncKeyedLocker without pooling")]
         public async Task AsyncKeyedLockNoPooling()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
