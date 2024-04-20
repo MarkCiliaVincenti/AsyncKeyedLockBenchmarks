@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="6.3.4" />
+		<PackageReference Include="AsyncKeyedLock" Version="6.4.0" />
 		<PackageReference Include="AsyncKeyLock" Version="1.0.4" />
 		<PackageReference Include="AsyncUtilities" Version="1.1.1" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
@@ -16,7 +16,7 @@
 		<PackageReference Include="KeyedSemaphores" Version="5.0.0" />
 		<PackageReference Include="ListShuffle" Version="2.0.0" />
 		<PackageReference Include="NeoSmart.Synchronization" Version="2.0.0" />
-		<PackageReference Include="SixLabors.ImageSharp.Web" Version="3.1.0" />
+		<PackageReference Include="SixLabors.ImageSharp.Web" Version="3.1.2" />
 	</ItemGroup>
 
 	<ItemGroup>
