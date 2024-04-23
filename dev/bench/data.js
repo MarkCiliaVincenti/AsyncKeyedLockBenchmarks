@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1713719165451,
+  "lastUpdate": 1713858679365,
   "repoUrl": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks",
   "entries": {
     "Benchmark.Net Benchmark": [
@@ -21744,6 +21744,174 @@ window.BENCHMARK_DATA = {
             "value": 1275.3823529411766,
             "unit": "ns",
             "range": "± 29.93718914857651"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "distinct": true,
+          "id": "00dffae9f780190db73ef6f5e80e2ccc720806f6",
+          "message": "Benchmarks for EasyCaching",
+          "timestamp": "2024-04-23T09:24:25+02:00",
+          "tree_id": "1204f99d4d3024c04e26baed0edb312868202e87",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/00dffae9f780190db73ef6f5e80e2ccc720806f6"
+        },
+        "date": 1713858678738,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 200, Contention: 100, GuidReversals: 0)",
+            "value": 15349706.825581396,
+            "unit": "ns",
+            "range": "± 2563931.52038197"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 200, Contention: 100, GuidReversals: 0)",
+            "value": 20258736.16,
+            "unit": "ns",
+            "range": "± 7046179.59757469"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 200, Contention: 100, GuidReversals: 1)",
+            "value": 39420331.196428575,
+            "unit": "ns",
+            "range": "± 1680061.6102555767"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 200, Contention: 100, GuidReversals: 1)",
+            "value": 38664991.97826087,
+            "unit": "ns",
+            "range": "± 1484129.701418616"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 200, Contention: 100, GuidReversals: 5)",
+            "value": 104775402.25,
+            "unit": "ns",
+            "range": "± 10270182.14756701"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 200, Contention: 100, GuidReversals: 5)",
+            "value": 103829740.51,
+            "unit": "ns",
+            "range": "± 11269457.679763215"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 200, Contention: 10000, GuidReversals: 0)",
+            "value": 2088942819,
+            "unit": "ns",
+            "range": "± 33384954.641577695"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 200, Contention: 10000, GuidReversals: 0)",
+            "value": 2248456686.233333,
+            "unit": "ns",
+            "range": "± 23022570.861315757"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 200, Contention: 10000, GuidReversals: 1)",
+            "value": 4648699754.533334,
+            "unit": "ns",
+            "range": "± 17911661.48887185"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 200, Contention: 10000, GuidReversals: 1)",
+            "value": 4844578713.733334,
+            "unit": "ns",
+            "range": "± 31735422.64822249"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 200, Contention: 10000, GuidReversals: 5)",
+            "value": 11786893675.67647,
+            "unit": "ns",
+            "range": "± 231499270.52788538"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 200, Contention: 10000, GuidReversals: 5)",
+            "value": 11923912382.6,
+            "unit": "ns",
+            "range": "± 189193729.21084175"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 10000, Contention: 100, GuidReversals: 0)",
+            "value": 1094885647.75,
+            "unit": "ns",
+            "range": "± 21445384.684364375"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 10000, Contention: 100, GuidReversals: 0)",
+            "value": 1147084853.5,
+            "unit": "ns",
+            "range": "± 16728277.221614579"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 10000, Contention: 100, GuidReversals: 1)",
+            "value": 2303743181.266667,
+            "unit": "ns",
+            "range": "± 14945794.423492141"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 10000, Contention: 100, GuidReversals: 1)",
+            "value": 2358618870.4666667,
+            "unit": "ns",
+            "range": "± 16963952.210122094"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 10000, Contention: 100, GuidReversals: 5)",
+            "value": 5660138084.648648,
+            "unit": "ns",
+            "range": "± 192165735.3916422"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 10000, Contention: 100, GuidReversals: 5)",
+            "value": 5836943952.666667,
+            "unit": "ns",
+            "range": "± 124222185.03741331"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 10000, Contention: 10000, GuidReversals: 0)",
+            "value": 1296.2533333333333,
+            "unit": "ns",
+            "range": "± 78.83288745278928"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 10000, Contention: 10000, GuidReversals: 0)",
+            "value": 1798.0961538461538,
+            "unit": "ns",
+            "range": "± 75.14176395852971"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 10000, Contention: 10000, GuidReversals: 1)",
+            "value": 1256.7222222222222,
+            "unit": "ns",
+            "range": "± 51.38071406449873"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 10000, Contention: 10000, GuidReversals: 1)",
+            "value": 1385.8595505617977,
+            "unit": "ns",
+            "range": "± 108.98490796175436"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLocker(NumberOfLocks: 10000, Contention: 10000, GuidReversals: 5)",
+            "value": 1796.8947368421052,
+            "unit": "ns",
+            "range": "± 70.8567414533602"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.MemoryLockerOld(NumberOfLocks: 10000, Contention: 10000, GuidReversals: 5)",
+            "value": 1352.6190476190477,
+            "unit": "ns",
+            "range": "± 36.48352531003027"
           }
         ]
       }
