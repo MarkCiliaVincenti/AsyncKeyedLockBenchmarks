@@ -119,7 +119,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark(Baseline = true, Description = "AsyncKeyedLocker with pooling")]
+        //[Benchmark(Baseline = true, Description = "AsyncKeyedLocker with pooling")]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -161,7 +161,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerNoPoolingTasks = null;
         }
 
-        //[Benchmark(Description = "AsyncKeyedLocker without pooling")]
+        [Benchmark(Baseline = true, Description = "AsyncKeyedLocker without pooling")]
         public async Task AsyncKeyedLockNoPooling()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
