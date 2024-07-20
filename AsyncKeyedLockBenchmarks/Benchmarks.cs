@@ -11,31 +11,31 @@ using NeoSmart.Synchronization;
 
 namespace AsyncKeyedLockBenchmarks
 {
-    //[Config(typeof(Config))]
-    [Config(typeof(MemoryConfig))]
+    [Config(typeof(Config))]
+    //[Config(typeof(MemoryConfig))]
     [MemoryDiagnoser]
     [JsonExporterAttribute.Full]
     [JsonExporterAttribute.FullCompressed]
     public class Benchmarks
     {
-        private class MemoryConfig : ManualConfig
-        {
-            public MemoryConfig()
-            {
-                AddDiagnoser(MemoryDiagnoser.Default);
-            }
-        }
-
-        //private class Config : ManualConfig
+        //private class MemoryConfig : ManualConfig
         //{
-        //    public Config()
+        //    public MemoryConfig()
         //    {
-        //        var baseJob = Job.Default;
-
-        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.2.5").WithBaseline(true));
-        //        AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.2.6-alpha"));
+        //        AddDiagnoser(MemoryDiagnoser.Default);
         //    }
         //}
+
+        private class Config : ManualConfig
+        {
+            public Config()
+            {
+                var baseJob = Job.Default;
+
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.4.2").WithBaseline(true));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "7.0.0-rc2"));
+            }
+        }
 
         [Params(200, 10_000)] public int NumberOfLocks { get; set; }
 
@@ -161,7 +161,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerNoPoolingTasks = null;
         }
 
-        [Benchmark(Description = "AsyncKeyedLocker without pooling")]
+        //[Benchmark(Description = "AsyncKeyedLocker without pooling")]
         public async Task AsyncKeyedLockNoPooling()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -170,6 +170,7 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion AsyncKeyedLockNoPooling
 
+        /*
         #region StripedAsyncKeyedLocker
         public StripedAsyncKeyedLocker<string>? StripedAsyncKeyedLockerCollection { get; set; }
         public ParallelQuery<Task>? StripedAsyncKeyedLockerTasks { get; set; }
@@ -576,4 +577,5 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion SimpleHelpers.NamedLock
     }
+        */
 }

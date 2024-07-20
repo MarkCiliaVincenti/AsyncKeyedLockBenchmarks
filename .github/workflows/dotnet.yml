@@ -2,7 +2,7 @@ name: AsyncKeyedLockBenchmarks
 on:
   push:
     branches:
-      - master
+      - net9test
 
 permissions:
   contents: write
