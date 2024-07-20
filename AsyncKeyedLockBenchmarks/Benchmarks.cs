@@ -576,6 +576,6 @@ namespace AsyncKeyedLockBenchmarks
 #pragma warning restore CS8604 // Possible null reference argument.
         }
         #endregion SimpleHelpers.NamedLock
+                */
     }
-        */
 }
