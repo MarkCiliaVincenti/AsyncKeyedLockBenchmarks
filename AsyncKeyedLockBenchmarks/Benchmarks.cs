@@ -138,7 +138,7 @@ namespace AsyncKeyedLockBenchmarks
             if (NumberOfLocks != Contention)
             {
                 AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<string>(o =>
-                { }, Environment.ProcessorCount, NumberOfLocks);
+                { o.PoolSize = 0; }, Environment.ProcessorCount, NumberOfLocks);
                 AsyncKeyedLockerNoPoolingTasks = ShuffledIntegers
                     .Select(async i =>
                     {
