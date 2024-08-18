@@ -30,8 +30,8 @@ namespace AsyncKeyedLockBenchmarks
             {
                 var baseJob = Job.Default;
 
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.3.3").WithBaseline(true));
-                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "6.3.4-rc"));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "7.0.0").WithBaseline(true));
+                AddJob(baseJob.WithNuGet("AsyncKeyedLock", "7.0.1-alpha"));
             }
         }
 
