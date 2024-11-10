@@ -201,7 +201,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark(Description = "StripedAsyncKeyedLocker")]
+        [Benchmark(Description = "StripedAsyncKeyedLocker")]
         public async Task StripedAsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
