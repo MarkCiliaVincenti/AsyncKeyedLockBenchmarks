@@ -8,6 +8,7 @@ using Dao.IndividualLock;
 using KeyedSemaphores;
 using ListShuffle;
 using NeoSmart.Synchronization;
+using Stl.Locking;
 
 namespace AsyncKeyedLockBenchmarks
 {
@@ -574,6 +575,46 @@ namespace AsyncKeyedLockBenchmarks
             await RunTests(DaoIndividualLockTasks).ConfigureAwait(false);
 #pragma warning restore CS8604 // Possible null reference argument.
         }
-        #endregion SimpleHelpers.NamedLock
+        #endregion Dao.IndividualLock
+
+        #region Stl.Fusion.AsyncLockSet
+        public AsyncLockSet<string> AsyncLockSetLocks { get; set; }
+        public ParallelQuery<Task>? AsyncLockSetTasks { get; set; }
+
+        [IterationSetup(Target = nameof(StlFusionAsyncLockSet))]
+        public void SetupAsyncLockSet()
+        {
+            if (NumberOfLocks != Contention)
+            {
+                AsyncLockSetLocks = new AsyncLockSet<string>(LockReentryMode.Unchecked, Environment.ProcessorCount, NumberOfLocks);
+                AsyncLockSetTasks = ShuffledIntegers
+                    .Select(async i =>
+                    {
+                        var key = (i % NumberOfLocks).ToString();
+
+                        using (var myLock = await AsyncLockSetLocks.Lock(key).ConfigureAwait(false))
+                        {
+                            Operation();
+                        }
+
+                        await Task.Yield();
+                    }).AsParallel();
+            }
+        }
+
+        [IterationCleanup(Target = nameof(StlFusionAsyncLockSet))]
+        public void CleanupAsyncLockSet()
+        {
+            AsyncLockSetTasks = null;
+        }
+
+        [Benchmark(Description = "Stl.Fusion.AsyncLockSet")]
+        public async Task StlFusionAsyncLockSet()
+        {
+#pragma warning disable CS8604 // Possible null reference argument.
+            await RunTests(AsyncLockSetTasks).ConfigureAwait(false);
+#pragma warning restore CS8604 // Possible null reference argument.
+        }
+        #endregion Stl.Fusion.AsyncLockSet
     }
 }
