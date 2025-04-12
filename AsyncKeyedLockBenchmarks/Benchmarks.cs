@@ -38,9 +38,14 @@ namespace AsyncKeyedLockBenchmarks
         //    }
         //}
 
-        [Params(200, 10_000)] public int NumberOfLocks { get; set; }
-
-        [Params(100, 10_000)] public int Contention { get; set; }
+        [ParamsSource(nameof(Configurations))]
+        public (int NumberOfLocks, int Contention) Setting { get; set; }
+        public (int NumberOfLocks, int Contention)[] Configurations { get; } =
+        {
+            (200, 100),
+            (200, 10_000),
+            (10_000, 100)
+        };
 
         [Params(0, 1, 5)] public int GuidReversals { get; set; }
 
@@ -50,11 +55,11 @@ namespace AsyncKeyedLockBenchmarks
         {
             get
             {
-                if (!_shuffledIntegers.TryGetValue(Contention * NumberOfLocks, out var shuffledIntegers))
+                if (!_shuffledIntegers.TryGetValue(Setting.Contention * Setting.NumberOfLocks, out var shuffledIntegers))
                 {
-                    shuffledIntegers = Enumerable.Range(0, Contention * NumberOfLocks).ToList();
+                    shuffledIntegers = Enumerable.Range(0, Setting.Contention * Setting.NumberOfLocks).ToList();
                     shuffledIntegers.Shuffle();
-                    _shuffledIntegers[Contention * NumberOfLocks] = shuffledIntegers;
+                    _shuffledIntegers[Setting.Contention * Setting.NumberOfLocks] = shuffledIntegers;
                 }
                 return shuffledIntegers;
             }
@@ -78,10 +83,7 @@ namespace AsyncKeyedLockBenchmarks
 
         private async Task RunTests(ParallelQuery<Task> tasks)
         {
-            if (NumberOfLocks != Contention)
-            {
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-            }
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
 
         #region AsyncKeyedLock
@@ -91,17 +93,17 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(AsyncKeyedLock))]
         public void SetupAsyncKeyedLock()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
                 AsyncKeyedLocker = new AsyncKeyedLocker<string>(o =>
                 {
-                    o.PoolSize = NumberOfLocks;
+                    o.PoolSize = Setting.NumberOfLocks;
                     o.PoolInitialFill = Environment.ProcessorCount * 2;
-                }, Environment.ProcessorCount, NumberOfLocks);
+                }, Environment.ProcessorCount, Setting.NumberOfLocks);
                 AsyncKeyedLockerTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await AsyncKeyedLocker.LockAsync(key).ConfigureAwait(false))
                         {
@@ -136,14 +138,14 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(AsyncKeyedLockNoPooling))]
         public void SetupAsyncKeyedLockNoPooling()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
                 AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<string>(o =>
-                { o.PoolSize = 0; }, Environment.ProcessorCount, NumberOfLocks);
+                { o.PoolSize = 0; }, Environment.ProcessorCount, Setting.NumberOfLocks);
                 AsyncKeyedLockerNoPoolingTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await AsyncKeyedLockerNoPooling.LockAsync(key).ConfigureAwait(false))
                         {
@@ -178,13 +180,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(StripedAsyncKeyedLock))]
         public void SetupStripedAsyncKeyedLock()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
-                StripedAsyncKeyedLockerCollection = new StripedAsyncKeyedLocker<string>(NumberOfLocks, 1);
+                StripedAsyncKeyedLockerCollection = new StripedAsyncKeyedLocker<string>(Setting.NumberOfLocks, 1);
                 StripedAsyncKeyedLockerTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await StripedAsyncKeyedLockerCollection.LockAsync(key).ConfigureAwait(false))
                         {
@@ -219,13 +221,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(AsyncKeyLockFromImageSharpWeb))]
         public void SetupAsyncKeyLockFromImageSharpWeb()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
-                AsyncKeyLockerFromImageSharpWeb = new SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<string>(NumberOfLocks);
+                AsyncKeyLockerFromImageSharpWeb = new SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<string>(Setting.NumberOfLocks);
                 AsyncKeyLockerFromImageSharpWebTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await AsyncKeyLockerFromImageSharpWeb.LockAsync(key).ConfigureAwait(false))
                         {
@@ -260,13 +262,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(AsyncKeyLock))]
         public void SetupAsyncKeyLock()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
-                AsyncKeyLocker = new AsyncKeyLock.AsyncLock<string>(NumberOfLocks);
+                AsyncKeyLocker = new AsyncKeyLock.AsyncLock<string>(Setting.NumberOfLocks);
                 AsyncKeyLockerTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await AsyncKeyLocker.WriterLockAsync(key).ConfigureAwait(false))
                         {
@@ -301,13 +303,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(KeyedSemaphores))]
         public void SetupKeyedSemaphores()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
-                KeyedSemaphoresCollection = new KeyedSemaphoresCollection<string>(NumberOfLocks);
+                KeyedSemaphoresCollection = new KeyedSemaphoresCollection<string>(Setting.NumberOfLocks);
                 KeyedSemaphoresTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await KeyedSemaphoresCollection.LockAsync(key).ConfigureAwait(false))
                         {
@@ -342,13 +344,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(KeyedSemaphoresDictionary))]
         public void SetupKeyedSemaphoresDictionary()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
-                KeyedSemaphoresDictionaryDictionary = new KeyedSemaphoresDictionary<string>(Environment.ProcessorCount, NumberOfLocks, EqualityComparer<string>.Default, TimeSpan.FromMilliseconds(10));
+                KeyedSemaphoresDictionaryDictionary = new KeyedSemaphoresDictionary<string>(Environment.ProcessorCount, Setting.NumberOfLocks, EqualityComparer<string>.Default, TimeSpan.FromMilliseconds(10));
                 KeyedSemaphoresDictionaryTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await KeyedSemaphoresDictionaryDictionary.LockAsync(key).ConfigureAwait(false))
                         {
@@ -383,13 +385,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(AsyncDuplicateLock))]
         public void SetupAsyncDuplicateLock()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
                 AsyncDuplicateLockCollection = new();
                 AsyncDuplicateLockTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await AsyncDuplicateLockCollection.LockAsync(key).ConfigureAwait(false))
                         {
@@ -424,13 +426,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(TheodorZoulias))]
         public void SetupTheodorZoulias()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
                 TheodorZouliasCollection = new();
                 TheodorZouliasTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await TheodorZouliasCollection.LockAsync(key).ConfigureAwait(false))
                         {
@@ -465,13 +467,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(StripedAsyncLock))]
         public void SetupStripedAsyncLock()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
-                StripedAsyncLocker = new StripedAsyncLock<string>(NumberOfLocks);
+                StripedAsyncLocker = new StripedAsyncLock<string>(Setting.NumberOfLocks);
                 StripedAsyncLockTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await StripedAsyncLocker.LockAsync(key).ConfigureAwait(false))
                         {
@@ -505,12 +507,12 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(NeoSmart))]
         public void SetupNeoSmart()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
                 NeoSmartTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await ScopedMutex.CreateAsync(key).ConfigureAwait(false))
                         {
@@ -544,13 +546,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(DaoIndividualLock))]
         public void SetupDaoIndividualLock()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
                 DaoIndividualLocks = new IndividualLocks<string>();
                 DaoIndividualLockTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await DaoIndividualLocks.LockAsync(key).ConfigureAwait(false))
                         {
@@ -584,13 +586,13 @@ namespace AsyncKeyedLockBenchmarks
         [IterationSetup(Target = nameof(StlFusionAsyncLockSet))]
         public void SetupAsyncLockSet()
         {
-            if (NumberOfLocks != Contention)
+            if (Setting.NumberOfLocks != Setting.Contention)
             {
-                AsyncLockSetLocks = new AsyncLockSet<string>(LockReentryMode.Unchecked, Environment.ProcessorCount, NumberOfLocks);
+                AsyncLockSetLocks = new AsyncLockSet<string>(LockReentryMode.Unchecked, Environment.ProcessorCount, Setting.NumberOfLocks);
                 AsyncLockSetTasks = ShuffledIntegers
                     .Select(async i =>
                     {
-                        var key = (i % NumberOfLocks).ToString();
+                        var key = (i % Setting.NumberOfLocks).ToString();
 
                         using (var myLock = await AsyncLockSetLocks.Lock(key).ConfigureAwait(false))
                         {
