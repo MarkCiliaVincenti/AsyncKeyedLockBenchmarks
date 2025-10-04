@@ -9,15 +9,15 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="7.1.6" />
+		<PackageReference Include="AsyncKeyedLock" Version="7.1.7" />
 		<PackageReference Include="AsyncKeyLock" Version="1.0.6" />
 		<PackageReference Include="AsyncUtilities" Version="1.1.1" />
-		<PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.15.4" />
 		<PackageReference Include="Dao.IndividualLock" Version="3.1.1" />
 		<PackageReference Include="KeyedSemaphores" Version="5.0.0" />
-		<PackageReference Include="ListShuffle" Version="2.1.0" />
+		<PackageReference Include="ListShuffle" Version="2.1.2" />
 		<PackageReference Include="NeoSmart.Synchronization" Version="2.0.0" />
-		<PackageReference Include="SixLabors.ImageSharp.Web" Version="3.1.4" />
+		<PackageReference Include="SixLabors.ImageSharp.Web" Version="3.2.0" />
 		<PackageReference Include="Stl.Fusion" Version="6.8.11" />
 	</ItemGroup>
 
