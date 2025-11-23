@@ -5,10 +5,11 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<SciVersion Condition="'$(AsyncKeyedLockVersion)' == ''">6.2.6</SciVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="6.2.6" />
+		<PackageReference Include="AsyncKeyedLock" Version="$(AsyncKeyedLockVersion)" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
 		<PackageReference Include="DeterministicGuids" Version="1.0.5" />
 		<PackageReference Include="ListShuffle" Version="2.1.2" />
