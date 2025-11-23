@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="7.1.7" />
+		<PackageReference Include="AsyncKeyedLock" Version="7.1.8-beta3" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
 		<PackageReference Include="DeterministicGuids" Version="1.0.5" />
 		<PackageReference Include="ListShuffle" Version="2.1.2" />
