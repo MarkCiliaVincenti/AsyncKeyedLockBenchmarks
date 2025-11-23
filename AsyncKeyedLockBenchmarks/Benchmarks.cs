@@ -21,8 +21,11 @@ namespace AsyncKeyedLockBenchmarks
                 var baseJob = Job.Default;
 
                 string[] targetVersions = [
-                    "6.2.6",
                     "7.1.7",
+                    "7.1.8-beta",
+                    "7.1.8-beta2",
+                    "7.1.8-beta3",
+                    "7.1.8-beta4",
                     "7.1.8-beta5",
                 ];
 
