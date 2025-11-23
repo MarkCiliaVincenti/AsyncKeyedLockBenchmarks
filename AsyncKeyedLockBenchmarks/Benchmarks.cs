@@ -20,8 +20,24 @@ namespace AsyncKeyedLockBenchmarks
             {
                 var baseJob = Job.Default;
 
-                AddJob(baseJob.WithMsBuildArguments("/p:AsyncKeyedLockVersion=7.1.7").WithBaseline(true));
-                AddJob(baseJob.WithMsBuildArguments("/p:AsyncKeyedLockVersion=7.1.8-beta5"));
+                string[] targetVersions = [
+                    "6.2.6",
+                    "7.1.7",
+                    "7.1.8-beta5",
+                ];
+
+                AddJob(Job.MediumRun
+                    .WithMsBuildArguments($"/p:AsyncKeyedLockVersion={targetVersions[0]}")
+                    .WithId($"v{targetVersions[0]}")
+                );
+
+                for (int i = 1; i < targetVersions.Length; i++)
+                {
+                    AddJob(Job.MediumRun
+                        .WithMsBuildArguments($"/p:AsyncKeyedLockVersion={targetVersions[i]}")
+                        .WithId($"v{targetVersions[i]}")
+                    );
+                }
             }
         }
 
