@@ -2,16 +2,16 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncKeyedLock" Version="7.1.6" />
-		<PackageReference Include="AsyncKeyLock" Version="1.0.4" />
+		<PackageReference Include="AsyncKeyedLock" Version="7.1.7" />
+		<PackageReference Include="AsyncKeyLock" Version="1.0.6" />
 		<PackageReference Include="AsyncUtilities" Version="1.1.1" />
-		<PackageReference Include="BenchmarkDotNet" Version="0.15.4" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
 		<PackageReference Include="KeyedSemaphores" Version="5.0.0" />
 		<PackageReference Include="ListShuffle" Version="2.1.2" />
 		<PackageReference Include="SixLabors.ImageSharp.Web" Version="3.2.0" />

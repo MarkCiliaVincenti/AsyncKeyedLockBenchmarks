@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32929.385
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11217.181 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncKeyedLockBenchmarks", "AsyncKeyedLockBenchmarks\AsyncKeyedLockBenchmarks.csproj", "{03D51934-91EA-47E3-A106-DB8B1647BABE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0746C4CC-B008-4280-948B-D133CECC53C4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\comparison.yml = .github\workflows\comparison.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
