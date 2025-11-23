@@ -118,7 +118,7 @@ namespace AsyncKeyedLockBenchmarks
         }
 
         //[Benchmark(Baseline = true, Description = "AsyncKeyedLocker with pooling")]
-        //[Benchmark(Description = "AsyncKeyedLocker with pooling")]
+        [Benchmark(Description = "AsyncKeyedLocker with pooling")]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
