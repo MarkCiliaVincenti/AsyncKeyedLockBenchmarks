@@ -22,10 +22,6 @@ namespace AsyncKeyedLockBenchmarks
 
                 string[] targetVersions = [
                     "7.1.7",
-                    "7.1.8-beta",
-                    "7.1.8-beta2",
-                    "7.1.8-beta3",
-                    "7.1.8-beta4",
                     "7.1.8-beta5",
                 ];
 
@@ -129,8 +125,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark(Baseline = true, Description = "AsyncKeyedLocker with pooling")]
-        [Benchmark(Description = "AsyncKeyedLocker with pooling")]
+        //[Benchmark(Description = "AsyncKeyedLocker with pooling")]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -213,7 +208,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncKeyedLockerTasks = null;
         }
 
-        //[Benchmark(Description = "StripedAsyncKeyedLocker")]
+        [Benchmark(Description = "StripedAsyncKeyedLocker")]
         public async Task StripedAsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
