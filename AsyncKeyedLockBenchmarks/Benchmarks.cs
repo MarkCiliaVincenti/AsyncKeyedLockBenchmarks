@@ -4,6 +4,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Jobs;
+using DeterministicGuids;
 using KeyedSemaphores;
 using ListShuffle;
 
@@ -60,8 +61,8 @@ namespace AsyncKeyedLockBenchmarks
         private void Operation()
         {
             for (int i = 0; i < GuidReversals; i++)
-            {
-                Guid guid = Guid.NewGuid();
+            {                
+                Guid guid = DeterministicGuid.Create(DeterministicGuid.Namespaces.Events, i.ToString());
                 var guidString = guid.ToString();
                 guidString = guidString.Reverse().ToString();
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
