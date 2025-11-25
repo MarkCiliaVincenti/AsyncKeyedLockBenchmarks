@@ -15,7 +15,7 @@
 		<PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
 		<PackageReference Include="Dao.IndividualLock" Version="3.1.1" />
 		<PackageReference Include="DeterministicGuids" Version="1.0.5" />
-		<PackageReference Include="KeyedSemaphores" Version="5.0.0" />
+		<PackageReference Include="KeyedSemaphores" Version="6.0.0" />
 		<PackageReference Include="ListShuffle" Version="2.1.2" />
 		<PackageReference Include="NeoSmart.Synchronization" Version="2.0.0" />
 		<PackageReference Include="SixLabors.ImageSharp.Web" Version="3.2.0" />
