@@ -29,6 +29,7 @@ namespace AsyncKeyedLockBenchmarks
                 AddJob(Job.MediumRun
                     .WithMsBuildArguments($"/p:AsyncKeyedLockVersion={targetVersions[0]}")
                     .WithId($"v{targetVersions[0]}")
+                    .WithBaseline(true) // Set the first target version as the baseline
                 );
 
                 for (int i = 1; i < targetVersions.Length; i++)
