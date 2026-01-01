@@ -127,7 +127,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark(Description = "AsyncKeyedLocker with pooling")]
+        //[Benchmark(Description = "AsyncKeyedLocker with pooling")]
         public async Task AsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -146,7 +146,7 @@ namespace AsyncKeyedLockBenchmarks
             if (Setting.NumberOfLocks != Setting.Contention)
             {
                 AsyncKeyedLockerNoPooling = new AsyncKeyedLocker<string>(o =>
-                { }, Environment.ProcessorCount, Setting.NumberOfLocks);
+                { o.PoolSize = 0; }, Environment.ProcessorCount, Setting.NumberOfLocks);
                 AsyncKeyedLockerNoPoolingTasks = ShuffledIntegers
                     .Select(async i =>
                     {
@@ -210,7 +210,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncKeyedLockerTasks = null;
         }
 
-        [Benchmark(Description = "StripedAsyncKeyedLocker")]
+        //[Benchmark(Description = "StripedAsyncKeyedLocker")]
         public async Task StripedAsyncKeyedLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
