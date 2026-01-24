@@ -215,51 +215,6 @@ namespace AsyncKeyedLockBenchmarks
         }
         #endregion StripedAsyncKeyedLocker
 
-        #region AtomicAsyncKeyedLocker
-        public AtomicAsyncKeyedLocker<string>? AtomicAsyncKeyedLockerCollection { get; set; }
-        public ParallelQuery<Task>? AtomicAsyncKeyedLockerTasks { get; set; }
-
-        [IterationSetup(Target = nameof(AtomicAsyncKeyedLock))]
-        public void SetupAtomicAsyncKeyedLock()
-        {
-            if (Setting.NumberOfLocks != Setting.Contention)
-            {
-                AtomicAsyncKeyedLockerCollection = new AtomicAsyncKeyedLocker<string>(o =>
-                {
-                    o.PoolSize = Setting.NumberOfLocks;
-                    o.PoolInitialFill = Environment.ProcessorCount * 2;
-                }, Environment.ProcessorCount, Setting.NumberOfLocks);
-                AtomicAsyncKeyedLockerTasks = ShuffledIntegers
-                    .Select(async i =>
-                    {
-                        var key = (i % Setting.NumberOfLocks).ToString();
-
-                        using (var myLock = await AtomicAsyncKeyedLockerCollection.LockAsync(key).ConfigureAwait(false))
-                        {
-                            Operation();
-                        }
-
-                        await Task.Yield();
-                    }).AsParallel();
-            }
-        }
-
-        [IterationCleanup(Target = nameof(AtomicAsyncKeyedLock))]
-        public void CleanupAtomicAsyncKeyedLocker()
-        {
-            AtomicAsyncKeyedLockerCollection = null;
-            AtomicAsyncKeyedLockerTasks = null;
-        }
-
-        [Benchmark(Description = "AtomicAsyncKeyedLocker")]
-        public async Task AtomicAsyncKeyedLock()
-        {
-#pragma warning disable CS8604 // Possible null reference argument.
-            await RunTests(AtomicAsyncKeyedLockerTasks).ConfigureAwait(false);
-#pragma warning restore CS8604 // Possible null reference argument.
-        }
-        #endregion AtomicAsyncKeyedLocker
-
         #region AsyncKeyLockFromImageSharpWeb
         public SixLabors.ImageSharp.Web.Synchronization.AsyncKeyLock<string>? AsyncKeyLockerFromImageSharpWeb { get; set; }
         public ParallelQuery<Task>? AsyncKeyLockerFromImageSharpWebTasks { get; set; }
@@ -292,7 +247,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncKeyLockerFromImageSharpWebTasks = null;
         }
 
-        //[Benchmark(Description = "AsyncKeyLock from ImageSharp.Web")]
+        [Benchmark(Description = "AsyncKeyLock from ImageSharp.Web")]
         public async Task AsyncKeyLockFromImageSharpWeb()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -374,7 +329,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresTasks = null;
         }
 
-        //[Benchmark(Description = "KeyedSemaphoresCollection from Keyed Semaphores")]
+        [Benchmark(Description = "KeyedSemaphoresCollection from Keyed Semaphores")]
         public async Task KeyedSemaphores()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -415,7 +370,7 @@ namespace AsyncKeyedLockBenchmarks
             KeyedSemaphoresDictionaryTasks = null;
         }
 
-        //[Benchmark(Description = "KeyedSemaphoresDictionary from Keyed Semaphores")]
+        [Benchmark(Description = "KeyedSemaphoresDictionary from Keyed Semaphores")]
         public async Task KeyedSemaphoresDictionary()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -456,7 +411,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncDuplicateLockCollection = null;
         }
 
-        //[Benchmark(Description = "AsyncDuplicateLock, Stephen Cleary's SO solution")]
+        [Benchmark(Description = "AsyncDuplicateLock, Stephen Cleary's SO solution")]
         public async Task AsyncDuplicateLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -497,7 +452,7 @@ namespace AsyncKeyedLockBenchmarks
             TheodorZouliasCollection = null;
         }
 
-        //[Benchmark(Description = "AsyncDuplicateLock, Theodor Zoulias' SO solution")]
+        [Benchmark(Description = "AsyncDuplicateLock, Theodor Zoulias' SO solution")]
         public async Task TheodorZoulias()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -538,7 +493,7 @@ namespace AsyncKeyedLockBenchmarks
             StripedAsyncLockTasks = null;
         }
 
-        //[Benchmark(Description = "StripedAsyncLock from AsyncUtilities")]
+        [Benchmark(Description = "StripedAsyncLock from AsyncUtilities")]
         public async Task StripedAsyncLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -576,7 +531,7 @@ namespace AsyncKeyedLockBenchmarks
             NeoSmartTasks = null;
         }
 
-        //[Benchmark(Description = "NeoSmart.Synchronization")]
+        [Benchmark(Description = "NeoSmart.Synchronization")]
         public async Task NeoSmart()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -616,7 +571,7 @@ namespace AsyncKeyedLockBenchmarks
             DaoIndividualLockTasks = null;
         }
 
-        //[Benchmark(Description = "Dao.IndividualLock")]
+        [Benchmark(Description = "Dao.IndividualLock")]
         public async Task DaoIndividualLock()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -656,7 +611,7 @@ namespace AsyncKeyedLockBenchmarks
             AsyncLockSetTasks = null;
         }
 
-        //[Benchmark(Description = "Stl.Fusion.AsyncLockSet")]
+        [Benchmark(Description = "Stl.Fusion.AsyncLockSet")]
         public async Task StlFusionAsyncLockSet()
         {
 #pragma warning disable CS8604 // Possible null reference argument.
