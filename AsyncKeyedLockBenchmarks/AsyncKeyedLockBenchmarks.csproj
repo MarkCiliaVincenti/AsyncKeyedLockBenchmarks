@@ -11,7 +11,7 @@
 	<ItemGroup>
 		<PackageReference Include="AsyncKeyedLock" Version="$(AsyncKeyedLockVersion)" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
-		<PackageReference Include="DeterministicGuids" Version="1.0.9" />
+		<PackageReference Include="DeterministicGuids" Version="1.0.11" />
 		<PackageReference Include="ListShuffle" Version="2.1.3" />
 	</ItemGroup>
 
