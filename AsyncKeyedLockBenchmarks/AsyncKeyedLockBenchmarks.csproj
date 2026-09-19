@@ -5,7 +5,7 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<AsyncKeyedLockVersion Condition="'$(AsyncKeyedLockVersion)' == ''">8.0.0</AsyncKeyedLockVersion>
+		<AsyncKeyedLockVersion Condition="'$(AsyncKeyedLockVersion)' == ''">8.0.2</AsyncKeyedLockVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
