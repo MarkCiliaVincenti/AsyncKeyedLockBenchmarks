@@ -5,6 +5,7 @@
 		<TargetFramework>net11.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<Features>$(Features);runtime-async=on</Features>
 		<AsyncKeyedLockVersion Condition="'$(AsyncKeyedLockVersion)' == ''">8.1.2</AsyncKeyedLockVersion>
 	</PropertyGroup>
 
