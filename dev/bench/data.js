@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789913675371,
+  "lastUpdate": 1794655324023,
   "repoUrl": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks",
   "entries": {
     "Benchmark.Net Benchmark": [
@@ -44604,6 +44604,732 @@ window.BENCHMARK_DATA = {
             "value": 5743349054.6,
             "unit": "ns",
             "range": "± 67801572.02289814"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "committer": {
+            "email": "markciliavincenti@gmail.com",
+            "name": "Mark Cilia Vincenti",
+            "username": "MarkCiliaVincenti"
+          },
+          "distinct": true,
+          "id": "f7c2bfe2d692cbb8e3d2239da0397ccb760f75a7",
+          "message": "8.1.3",
+          "timestamp": "2026-11-14T10:56:19+01:00",
+          "tree_id": "69d2130c5553230d5ec21e9f8e81edeec2fdc31a",
+          "url": "https://github.com/MarkCiliaVincenti/AsyncKeyedLockBenchmarks/commit/f7c2bfe2d692cbb8e3d2239da0397ccb760f75a7"
+        },
+        "date": 1794655323541,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 0, Setting: (200, 100))",
+            "value": 7345455.46,
+            "unit": "ns",
+            "range": "± 540706.9762381604"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 0, Setting: (200, 100))",
+            "value": 7739518.556701031,
+            "unit": "ns",
+            "range": "± 506297.7389723153"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 0, Setting: (200, 100))",
+            "value": 5332289.711111112,
+            "unit": "ns",
+            "range": "± 296064.0502631276"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 0, Setting: (200, 100))",
+            "value": 9230185.69047619,
+            "unit": "ns",
+            "range": "± 336059.6665882261"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 0, Setting: (200, 100))",
+            "value": 5936918.611111111,
+            "unit": "ns",
+            "range": "± 119741.210338423"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 0, Setting: (200, 100))",
+            "value": 5690792.37113402,
+            "unit": "ns",
+            "range": "± 354260.14867520967"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 0, Setting: (200, 100))",
+            "value": 8276824.693181818,
+            "unit": "ns",
+            "range": "± 451971.4077579188"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 0, Setting: (200, 100))",
+            "value": 7822378.153061224,
+            "unit": "ns",
+            "range": "± 473619.8559079367"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 0, Setting: (200, 100))",
+            "value": 7458845.037037037,
+            "unit": "ns",
+            "range": "± 309204.1028029052"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 0, Setting: (200, 100))",
+            "value": 5731234.91,
+            "unit": "ns",
+            "range": "± 492731.8948165389"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 0, Setting: (200, 100))",
+            "value": 7543253.818181818,
+            "unit": "ns",
+            "range": "± 280499.18215876067"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 0, Setting: (200, 100))",
+            "value": 9181585.787234042,
+            "unit": "ns",
+            "range": "± 523318.00570295885"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 0, Setting: (200, 100))",
+            "value": 8819154.303030303,
+            "unit": "ns",
+            "range": "± 530786.6472961302"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1312148231.7333333,
+            "unit": "ns",
+            "range": "± 13031388.224128405"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1396509733,
+            "unit": "ns",
+            "range": "± 13267565.356034575"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1034026522,
+            "unit": "ns",
+            "range": "± 6895529.111813269"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1561911648,
+            "unit": "ns",
+            "range": "± 33024183.095338203"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1158892515.2142856,
+            "unit": "ns",
+            "range": "± 11039933.140890192"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1091823099.3333333,
+            "unit": "ns",
+            "range": "± 8569949.185491705"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1497809540.7333333,
+            "unit": "ns",
+            "range": "± 13251324.791030133"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1365651894.0714285,
+            "unit": "ns",
+            "range": "± 6623192.786761178"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1436389409.4,
+            "unit": "ns",
+            "range": "± 9051987.553199613"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1083809131.0714285,
+            "unit": "ns",
+            "range": "± 7179790.228337589"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1380327873.4666667,
+            "unit": "ns",
+            "range": "± 7103367.468563352"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1564863389.5,
+            "unit": "ns",
+            "range": "± 12528959.014579566"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 0, Setting: (200, 10000))",
+            "value": 1471288945.0769231,
+            "unit": "ns",
+            "range": "± 9510131.046775699"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 659208650.2857143,
+            "unit": "ns",
+            "range": "± 5908985.600504572"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 710446781.1428572,
+            "unit": "ns",
+            "range": "± 6867227.040502636"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 577873525,
+            "unit": "ns",
+            "range": "± 7472030.438456152"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 757477850.3571428,
+            "unit": "ns",
+            "range": "± 9066605.822574353"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 639838280.9333333,
+            "unit": "ns",
+            "range": "± 8826861.93170992"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 592104405.8571428,
+            "unit": "ns",
+            "range": "± 5026659.48758604"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 747253396.8571428,
+            "unit": "ns",
+            "range": "± 6901196.442735495"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 723551817.8461539,
+            "unit": "ns",
+            "range": "± 3468630.3520659963"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 707370686.5714285,
+            "unit": "ns",
+            "range": "± 4649690.30447944"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 603429982.8666667,
+            "unit": "ns",
+            "range": "± 10037969.681725055"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 684343420.7333333,
+            "unit": "ns",
+            "range": "± 3366385.672853506"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 805525211.3571428,
+            "unit": "ns",
+            "range": "± 4803785.336224622"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 0, Setting: (10000, 100))",
+            "value": 770679317.0666667,
+            "unit": "ns",
+            "range": "± 6473565.4983507395"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 1, Setting: (200, 100))",
+            "value": 16593694.88,
+            "unit": "ns",
+            "range": "± 1285226.9056145302"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 1, Setting: (200, 100))",
+            "value": 17221839.08,
+            "unit": "ns",
+            "range": "± 1060451.3498804108"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 1, Setting: (200, 100))",
+            "value": 14730354.74,
+            "unit": "ns",
+            "range": "± 1174016.3707150004"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 1, Setting: (200, 100))",
+            "value": 18494767.84,
+            "unit": "ns",
+            "range": "± 1615703.3311738565"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 1, Setting: (200, 100))",
+            "value": 15290279.53,
+            "unit": "ns",
+            "range": "± 1123168.5953963255"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 1, Setting: (200, 100))",
+            "value": 15625760.414141415,
+            "unit": "ns",
+            "range": "± 1008313.1694934255"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 1, Setting: (200, 100))",
+            "value": 17511799.7,
+            "unit": "ns",
+            "range": "± 1051675.3211085722"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 1, Setting: (200, 100))",
+            "value": 17071345.81,
+            "unit": "ns",
+            "range": "± 1106899.4641306046"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 1, Setting: (200, 100))",
+            "value": 16200093.35,
+            "unit": "ns",
+            "range": "± 1352339.5733471063"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 1, Setting: (200, 100))",
+            "value": 15086526.27,
+            "unit": "ns",
+            "range": "± 1375097.4281169006"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 1, Setting: (200, 100))",
+            "value": 17192479.74,
+            "unit": "ns",
+            "range": "± 1076884.027528598"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 1, Setting: (200, 100))",
+            "value": 21840668.22,
+            "unit": "ns",
+            "range": "± 1335877.751811641"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 1, Setting: (200, 100))",
+            "value": 19129110.04,
+            "unit": "ns",
+            "range": "± 1259629.770851953"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2261590613.714286,
+            "unit": "ns",
+            "range": "± 16957472.294914685"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2302653162.4666667,
+            "unit": "ns",
+            "range": "± 19683995.581411682"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2021147793.2142856,
+            "unit": "ns",
+            "range": "± 9598965.214498386"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2468900602.6666665,
+            "unit": "ns",
+            "range": "± 22583759.983384773"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2186866918.4,
+            "unit": "ns",
+            "range": "± 19637943.28466448"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2106727606.4,
+            "unit": "ns",
+            "range": "± 10888390.990366127"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2398234919.2,
+            "unit": "ns",
+            "range": "± 20507763.165661313"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2270281239.142857,
+            "unit": "ns",
+            "range": "± 8734970.656246135"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2283791993.9333334,
+            "unit": "ns",
+            "range": "± 17681409.71748842"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2157621545.888889,
+            "unit": "ns",
+            "range": "± 45273166.07084704"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2360240807,
+            "unit": "ns",
+            "range": "± 18469754.591863602"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2482008432.4,
+            "unit": "ns",
+            "range": "± 27149707.62772914"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 1, Setting: (200, 10000))",
+            "value": 2460420152.5333333,
+            "unit": "ns",
+            "range": "± 21125034.787983343"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1162017594.3076923,
+            "unit": "ns",
+            "range": "± 5450548.661532531"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1128025861.3125,
+            "unit": "ns",
+            "range": "± 21323609.159049854"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1030055293.7857143,
+            "unit": "ns",
+            "range": "± 14737746.23296396"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1255742445.5333333,
+            "unit": "ns",
+            "range": "± 20970629.61217698"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1170100065.0666666,
+            "unit": "ns",
+            "range": "± 14197045.909071257"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1121106035.1333334,
+            "unit": "ns",
+            "range": "± 13697222.94996068"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1190657919.357143,
+            "unit": "ns",
+            "range": "± 9284089.470190324"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1140073368.4666667,
+            "unit": "ns",
+            "range": "± 13550695.943509394"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1132519890.4,
+            "unit": "ns",
+            "range": "± 10263727.529251006"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1068759736.2,
+            "unit": "ns",
+            "range": "± 13604949.959123492"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1219365433.3076923,
+            "unit": "ns",
+            "range": "± 4273860.290054577"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1290458199.142857,
+            "unit": "ns",
+            "range": "± 9994094.790474622"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 1, Setting: (10000, 100))",
+            "value": 1222107851,
+            "unit": "ns",
+            "range": "± 16538656.670305494"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 5, Setting: (200, 100))",
+            "value": 54048461.15,
+            "unit": "ns",
+            "range": "± 5107753.0140508"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 5, Setting: (200, 100))",
+            "value": 51686173.76,
+            "unit": "ns",
+            "range": "± 4190567.505733665"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 5, Setting: (200, 100))",
+            "value": 53866492.28,
+            "unit": "ns",
+            "range": "± 4290092.741192558"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 5, Setting: (200, 100))",
+            "value": 56375202.45,
+            "unit": "ns",
+            "range": "± 3806188.7020057095"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 5, Setting: (200, 100))",
+            "value": 53210687.313432835,
+            "unit": "ns",
+            "range": "± 2511231.5700751063"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 5, Setting: (200, 100))",
+            "value": 51294066.464646466,
+            "unit": "ns",
+            "range": "± 4096662.6057468075"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 5, Setting: (200, 100))",
+            "value": 56309393.83838384,
+            "unit": "ns",
+            "range": "± 4500944.351354242"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 5, Setting: (200, 100))",
+            "value": 55972944.68571428,
+            "unit": "ns",
+            "range": "± 1794644.7007651236"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 5, Setting: (200, 100))",
+            "value": 55818590.63,
+            "unit": "ns",
+            "range": "± 4727952.047605505"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 5, Setting: (200, 100))",
+            "value": 53996668.71,
+            "unit": "ns",
+            "range": "± 4410306.893995035"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 5, Setting: (200, 100))",
+            "value": 54209052.9,
+            "unit": "ns",
+            "range": "± 4115749.505930677"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 5, Setting: (200, 100))",
+            "value": 53787723.42,
+            "unit": "ns",
+            "range": "± 3634793.245867648"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 5, Setting: (200, 100))",
+            "value": 55028096.45454545,
+            "unit": "ns",
+            "range": "± 3470101.2710070293"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 7231892551.666667,
+            "unit": "ns",
+            "range": "± 37493211.92293144"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5761667552.266666,
+            "unit": "ns",
+            "range": "± 40303087.54396931"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5279954638.142858,
+            "unit": "ns",
+            "range": "± 46802578.41583356"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 6103481928.6,
+            "unit": "ns",
+            "range": "± 43165157.59661933"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5922778383.666667,
+            "unit": "ns",
+            "range": "± 55889943.84286042"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5847012928.933333,
+            "unit": "ns",
+            "range": "± 75146627.69280162"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 6148488461.933333,
+            "unit": "ns",
+            "range": "± 43836099.985241264"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5858075265.866667,
+            "unit": "ns",
+            "range": "± 38223999.08020947"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5960150990.666667,
+            "unit": "ns",
+            "range": "± 35014963.92333622"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 6149346890.6,
+            "unit": "ns",
+            "range": "± 55416022.60612066"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5721377519.666667,
+            "unit": "ns",
+            "range": "± 41613674.07645979"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 5982993223.2,
+            "unit": "ns",
+            "range": "± 49761546.039008245"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 5, Setting: (200, 10000))",
+            "value": 6289204042.785714,
+            "unit": "ns",
+            "range": "± 51783414.13850878"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLock(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 3062909287.928571,
+            "unit": "ns",
+            "range": "± 26645344.955540884"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyedLockNoPooling(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2839196502.133333,
+            "unit": "ns",
+            "range": "± 38441073.21663009"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncKeyedLock(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2939382486.133333,
+            "unit": "ns",
+            "range": "± 30718662.601312853"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLockFromImageSharpWeb(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2915467066.2,
+            "unit": "ns",
+            "range": "± 53686462.99076048"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncKeyLock(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2910609632.9333334,
+            "unit": "ns",
+            "range": "± 31832324.43952162"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphores(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2932620189.6666665,
+            "unit": "ns",
+            "range": "± 30918478.67304748"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.KeyedSemaphoresDictionary(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 3172760945.6,
+            "unit": "ns",
+            "range": "± 26729747.163918342"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.AsyncDuplicateLock(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2923176752.6,
+            "unit": "ns",
+            "range": "± 41575122.59400035"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.TheodorZoulias(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2833590388.866667,
+            "unit": "ns",
+            "range": "± 23114214.98972486"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StripedAsyncLock(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2990505228.2,
+            "unit": "ns",
+            "range": "± 29022045.206757773"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.NeoSmart(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2930721628.266667,
+            "unit": "ns",
+            "range": "± 26570666.459534883"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.DaoIndividualLock(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 3052928932.2,
+            "unit": "ns",
+            "range": "± 20489834.966447655"
+          },
+          {
+            "name": "AsyncKeyedLockBenchmarks.Benchmarks.StlFusionAsyncLockSet(GuidReversals: 5, Setting: (10000, 100))",
+            "value": 2981092519.2,
+            "unit": "ns",
+            "range": "± 25574650.888412833"
           }
         ]
       }
